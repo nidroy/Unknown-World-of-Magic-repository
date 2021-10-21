@@ -9,21 +9,11 @@ public class Location : MonoBehaviour
     public string locationName; // название локации
     public Text locationNameText; // поле вывода названия локации
     public GameObject[] locationControlButtons; // кнопки управления локацией
+    public Menu menu; // меню
 
-    private void Update()
+    private void Start()
     {
-        if(locationNumber == 0)
-        {
-            Fortress();
-        }
-        else if(locationNumber == 1)
-        {
-            Glade();
-        }   
-        else if(locationNumber == 2)
-        {
-            Forest();
-        }
+        Fortress();
     }
 
     #region Movement
@@ -53,25 +43,52 @@ public class Location : MonoBehaviour
 
     #endregion
 
+    #region ChangingLocations
+
+    // сменить локацию
+    public void ChangeLocation()
+    {
+        if (locationNumber == 0)
+        {
+            Fortress();
+        }
+        else if (locationNumber == 1)
+        {
+            Glade();
+        }
+        else if (locationNumber == 2)
+        {
+            Forest();
+        }
+    }
+
+    #endregion
+
+    #region Locations
+
     // крепость
-    public void Fortress()
+    private void Fortress()
     {
         SetNameLocation("Крепость");
         locationControlButtons[0].SetActive(false);
+        menu.SetIconButtonInteractionNPC(0);
     }
 
     // поляна
-    public void Glade()
+    private void Glade()
     {
         SetNameLocation("Поляна");
         locationControlButtons[0].SetActive(true);
         locationControlButtons[1].SetActive(true);
+        menu.SetIconButtonInteractionNPC(1);
     }
 
     // лес
-    public void Forest()
+    private void Forest()
     {
         SetNameLocation("Лес");
         locationControlButtons[1].SetActive(false);
     }
+
+    #endregion
 }

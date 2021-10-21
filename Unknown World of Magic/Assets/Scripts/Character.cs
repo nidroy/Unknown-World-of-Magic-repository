@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Character : MonoBehaviour
+public abstract class Character : MonoBehaviour
 {
     public string characterName; // имя персонажа
     public Text characterNameText; // поле вывода имени персонажа
@@ -15,6 +15,10 @@ public class Character : MonoBehaviour
     public int characterLevel = 1; // уровень персонажа
     public Text characterLevelText; // поле вывода уровня персонажа
     public int characterDamage; // урон персонажа
+    public bool isFight = false; // сражение
+    public Location location; // локация
+    public float characterXP; // XP персонажа
+    public int characterMiss; // промахи персонажа 
 
     #region Name
 
@@ -112,6 +116,36 @@ public class Character : MonoBehaviour
     {
         characterHP -= Damage;
     }
+
+    #endregion
+
+    #region Miss
+
+    // установить промахи персонажа
+    public void SetMissCharacter(int miss)
+    {
+        characterMiss = miss;
+    }
+
+    #endregion
+
+    #region Battle
+
+    // начать или закончить сражение
+    public void StartEndBattle(bool isStartEnd)
+    {
+        if (location.locationNumber != 0)
+        {
+            isFight = isStartEnd;
+        }
+    }
+
+    #endregion
+
+    #region Death
+
+    // смерть персонажа
+    public abstract void DeathCharacter();
 
     #endregion
 }

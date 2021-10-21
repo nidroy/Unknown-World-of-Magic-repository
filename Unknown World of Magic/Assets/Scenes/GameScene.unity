@@ -368,7 +368,7 @@ GameObject:
   - component: {fileID: 23653239}
   - component: {fileID: 23653238}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -388,10 +388,10 @@ RectTransform:
   m_Father: {fileID: 1943411087}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 256, y: 256}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &23653238
 MonoBehaviour:
@@ -413,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8f03a8a721d67c84eb485a11354614c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c9b00ab864b403f45afb81839c9a68d5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -538,10 +538,10 @@ RectTransform:
   m_Father: {fileID: 1943411087}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 256, y: 256}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &121081958
 MonoBehaviour:
@@ -663,7 +663,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 131094712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1593969961}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: DodgeBlow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &131094712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1331,6 +1343,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817538407}
         m_TargetAssemblyTypeName: NPC, Assembly-CSharp
         m_MethodName: SetHPNPC
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1698824983}
+        m_TargetAssemblyTypeName: Location, Assembly-CSharp
+        m_MethodName: ChangeLocation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3869,12 +3893,16 @@ MonoBehaviour:
   characterLevel: 1
   characterLevelText: {fileID: 1537909607}
   characterDamage: 0
+  isFight: 0
+  location: {fileID: 1698824983}
+  characterXP: 0
+  characterMiss: 0
   characterClassSprite:
   - {fileID: 21300000, guid: 068a0f5b7f8ae9c42b6373e76c82a7df, type: 3}
   - {fileID: 21300000, guid: 67379bdf24016be439341b054328f51b, type: 3}
   - {fileID: 21300000, guid: 023afbba79b95f347a047c7696110ab3, type: 3}
-  location: {fileID: 1698824983}
   player: {fileID: 1593969961}
+  clock: {fileID: 1147174562}
 --- !u!1 &849478753
 GameObject:
   m_ObjectHideFlags: 0
@@ -4696,8 +4724,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1147174561}
+  - component: {fileID: 1147174562}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: "\u0421lock"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4726,6 +4755,25 @@ RectTransform:
   m_AnchoredPosition: {x: -160, y: -510}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1147174562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147174560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8d78c60f8d51f4fb5b8fb4191de40a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menu: {fileID: 2104969296}
+  clockImage: {fileID: 1987811711}
+  clockText: {fileID: 699590538}
+  seconds: 11
+  player: {fileID: 1593969961}
+  enemy: {fileID: 817538407}
+  isStop: 0
 --- !u!1 &1173821742
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,7 +5012,7 @@ GameObject:
   - component: {fileID: 1229995825}
   - component: {fileID: 1229995824}
   m_Layer: 5
-  m_Name: TimerBackground
+  m_Name: "\u0421lockBackground"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5675,7 +5723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1383957094
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5739,7 +5787,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1383957096}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 817538407}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: TakeDamagePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1383957096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5940,7 +6000,7 @@ GameObject:
   - component: {fileID: 1406921257}
   - component: {fileID: 1406921256}
   m_Layer: 5
-  m_Name: TimerFrame
+  m_Name: "\u0421lockFrame"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6206,6 +6266,7 @@ GameObject:
   - component: {fileID: 1477803142}
   - component: {fileID: 1477803144}
   - component: {fileID: 1477803143}
+  - component: {fileID: 1477803145}
   m_Layer: 5
   m_Name: Frame
   m_TagString: Untagged
@@ -6252,7 +6313,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2b0b3110512b68f4796b67f4c9c4f837, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1012f58a33331d24882571b8b0c4af2a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6270,6 +6331,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477803141}
   m_CullTransparentMesh: 1
+--- !u!114 &1477803145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1477803141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 2
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 21300000, guid: 2b0b3110512b68f4796b67f4c9c4f837, type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 1012f58a33331d24882571b8b0c4af2a, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 2b0b3110512b68f4796b67f4c9c4f837, type: 3}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1477803143}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetVisibilityButtonInteractionNPC
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetVisibilityClock
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetVisibilityButtonFirstAction
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetVisibilityButtonSecondAction
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1593969961}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+        m_MethodName: StartEndBattle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 817538407}
+        m_TargetAssemblyTypeName: Character, Assembly-CSharp
+        m_MethodName: StartEndBattle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1593969961}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: SetDodge
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1505822815
 GameObject:
   m_ObjectHideFlags: 0
@@ -6437,7 +6626,7 @@ GameObject:
   - component: {fileID: 1580403077}
   - component: {fileID: 1580403076}
   m_Layer: 5
-  m_Name: TimerTime
+  m_Name: "\u0421lockTime"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6564,10 +6753,16 @@ MonoBehaviour:
   characterLevel: 1
   characterLevelText: {fileID: 225418603}
   characterDamage: 0
-  maximumCharacterXP: 100
+  isFight: 0
+  location: {fileID: 1698824983}
   characterXP: 0
+  characterMiss: 0
+  maximumCharacterXP: 100
   characterXPImage: {fileID: 1247587}
   npc: {fileID: 817538407}
+  clock: {fileID: 1147174562}
+  isDodgeCharacter: 0
+  isDodgingBlow: 0
 --- !u!1 &1625067725
 GameObject:
   m_ObjectHideFlags: 0
@@ -7323,6 +7518,7 @@ MonoBehaviour:
   locationControlButtons:
   - {fileID: 2132141827}
   - {fileID: 317025432}
+  menu: {fileID: 2104969296}
 --- !u!1 &1708607717
 GameObject:
   m_ObjectHideFlags: 0
@@ -8006,7 +8202,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0410\u0442\u0430\u043A\u0430"
+  m_Text: 
 --- !u!222 &1872632664
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8303,7 +8499,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1943411087}
-  - component: {fileID: 1943411088}
   m_Layer: 5
   m_Name: ButtonInteractionNPC
   m_TagString: Untagged
@@ -8333,50 +8528,6 @@ RectTransform:
   m_AnchoredPosition: {x: -160, y: -510}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1943411088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1943411086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1945681450
 GameObject:
   m_ObjectHideFlags: 0
@@ -8633,7 +8784,7 @@ GameObject:
   - component: {fileID: 1987811712}
   - component: {fileID: 1987811711}
   m_Layer: 5
-  m_Name: TimerLine
+  m_Name: "\u0421lockLine"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9032,6 +9183,22 @@ MonoBehaviour:
   - {fileID: 2078639364}
   - {fileID: 1422657522}
   menuButtonName: {fileID: 723220289}
+  buttonInteractionNPC: {fileID: 1943411086}
+  clock: {fileID: 1147174560}
+  buttonInteractionNPCSprite:
+  - {fileID: 21300000, guid: 746649e2f4dba654985bdb0764e0150f, type: 3}
+  - {fileID: 21300000, guid: 3b0497f5c50d040478fa02e4bfaa9402, type: 3}
+  buttonInteractionNPCImage: {fileID: 121081958}
+  location: {fileID: 1698824983}
+  buttonsAction:
+  - {fileID: 1383957093}
+  - {fileID: 131094709}
+  - {fileID: 1913967532}
+  buttonsActionText:
+  - {fileID: 1872632663}
+  - {fileID: 1996402125}
+  - {fileID: 1776403710}
+  player: {fileID: 1593969961}
 --- !u!1 &2132141827
 GameObject:
   m_ObjectHideFlags: 0
@@ -9167,6 +9334,18 @@ MonoBehaviour:
       - m_Target: {fileID: 817538407}
         m_TargetAssemblyTypeName: NPC, Assembly-CSharp
         m_MethodName: SetHPNPC
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1698824983}
+        m_TargetAssemblyTypeName: Location, Assembly-CSharp
+        m_MethodName: ChangeLocation
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
