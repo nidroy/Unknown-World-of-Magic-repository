@@ -7995,13 +7995,15 @@ GameObject:
   - component: {fileID: 1405914454}
   - component: {fileID: 1405914456}
   - component: {fileID: 1405914455}
+  - component: {fileID: 1405914457}
+  - component: {fileID: 1405914458}
   m_Layer: 5
   m_Name: Characteristics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1405914454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8024,7 +8026,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 3.89, y: -384}
+  m_AnchoredPosition: {x: 3.89, y: 380}
   m_SizeDelta: {x: 2048, y: 2048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1405914455
@@ -8065,6 +8067,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405914453}
   m_CullTransparentMesh: 1
+--- !u!114 &1405914457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405914453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867ad5ab851638b4192b7d0e6883a6dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength: 0
+  agility: 0
+  intelligence: 0
+--- !u!95 &1405914458
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405914453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 776b77e995efc9342a1b8a646fdd20df, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1406921254
 GameObject:
   m_ObjectHideFlags: 0
@@ -8968,7 +9004,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1581928891}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetMenuButtonName
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: CloseItemMenuPlayer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1581928891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10129,6 +10189,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438"
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: OpenItemMenuPlayer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &1736823326
@@ -12113,8 +12185,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 09f502b1047044c4282b7dc5595a62cb, type: 3}
   - {fileID: 21300000, guid: ba4ac0fdde716494890d253465921177, type: 3}
   - {fileID: 21300000, guid: ecab2097994706d469a110f23a9224e4, type: 3}
-  - {fileID: 21300000, guid: b1853ab6b497f7b498a5f80109a2ea1d, type: 3}
   - {fileID: 21300000, guid: 5892de7c00cc4054cbb3c3bfb3a931ed, type: 3}
+  - {fileID: 21300000, guid: b1853ab6b497f7b498a5f80109a2ea1d, type: 3}
   outputClassSelectionImage:
   - {fileID: 1069219363}
   - {fileID: 2078639364}
@@ -12136,6 +12208,8 @@ MonoBehaviour:
   - {fileID: 1996402125}
   - {fileID: 1776403710}
   player: {fileID: 1593969961}
+  itemsPlayerMenu:
+  - {fileID: 1405914458}
 --- !u!1 &2121743625
 GameObject:
   m_ObjectHideFlags: 0

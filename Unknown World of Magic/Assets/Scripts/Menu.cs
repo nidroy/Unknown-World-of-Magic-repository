@@ -38,6 +38,7 @@ public class Menu : MonoBehaviour
     public GameObject[] buttonsAction; // кнопки действий
     public Text[] buttonsActionText; // текст на кнопках действий
     public Player player; // главный герой
+    public Animator[] itemsPlayerMenu; // элементы меню игрока
 
     private void Update()
     {
@@ -97,6 +98,18 @@ public class Menu : MonoBehaviour
             buttonsActionText[0].text = "јтаковать";
             buttonsActionText[1].text = "”клонитьс€";
         }
+    }
+
+    // открыть элемент меню игрока
+    public void OpenItemMenuPlayer(int item)
+    {
+        itemsPlayerMenu[item].SetBool("isOpen", true);
+    }
+
+    // закрыть элемент меню игрока
+    public void CloseItemMenuPlayer(int item)
+    {
+        itemsPlayerMenu[item].SetBool("isOpen", false);
     }
 
     #endregion
