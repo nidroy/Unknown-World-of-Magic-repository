@@ -22,6 +22,7 @@ public class Player : Character
         SetDamageCharacter(20, 60);
         TakeDamageEnemy(clock.seconds);
         DeathCharacter();
+        SetFrameCharacter();
     }
 
     #region Name

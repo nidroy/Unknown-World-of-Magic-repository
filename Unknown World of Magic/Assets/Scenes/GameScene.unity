@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.84313726, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2323,7 +2323,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 10
 --- !u!222 &416838976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4984,7 +4984,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ac22fc3e986eb5648a171dc14a1544ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 543cacf9550ed8640b7323ba627174b6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5384,6 +5384,11 @@ MonoBehaviour:
   location: {fileID: 1698824983}
   characterXP: 0
   characterMiss: 0
+  inputCharacterFrame:
+  - {fileID: 21300000, guid: 543cacf9550ed8640b7323ba627174b6, type: 3}
+  - {fileID: 21300000, guid: ac22fc3e986eb5648a171dc14a1544ff, type: 3}
+  - {fileID: 21300000, guid: 24e437be3137ba742993fbe7a4fa54a4, type: 3}
+  outputCharacterFrame: {fileID: 722932040}
   characterClassSprite:
   - {fileID: 21300000, guid: 068a0f5b7f8ae9c42b6373e76c82a7df, type: 3}
   - {fileID: 21300000, guid: 67379bdf24016be439341b054328f51b, type: 3}
@@ -7996,7 +8001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1405914454
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9069,6 +9074,11 @@ MonoBehaviour:
   location: {fileID: 1698824983}
   characterXP: 0
   characterMiss: 0
+  inputCharacterFrame:
+  - {fileID: 21300000, guid: 543cacf9550ed8640b7323ba627174b6, type: 3}
+  - {fileID: 21300000, guid: ac22fc3e986eb5648a171dc14a1544ff, type: 3}
+  - {fileID: 21300000, guid: 24e437be3137ba742993fbe7a4fa54a4, type: 3}
+  outputCharacterFrame: {fileID: 751075788}
   maximumCharacterXP: 100
   characterXPImage: {fileID: 1247587}
   npc: {fileID: 817538407}

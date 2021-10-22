@@ -13,6 +13,7 @@ public class NPC : Character
     {
         SetNPC();
         LoweringHP();
+        SetFrameCharacter();
         DeathCharacter();
     }
 

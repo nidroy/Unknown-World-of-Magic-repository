@@ -19,6 +19,8 @@ public abstract class Character : MonoBehaviour
     public Location location; // локация
     public float characterXP; // XP персонажа
     public int characterMiss; // промахи персонажа 
+    public Sprite[] inputCharacterFrame; // поля ввода рамок вокруг персонажа
+    public Image outputCharacterFrame; // поле вывода рамки вокруг персонажа
 
     #region Name
 
@@ -146,6 +148,27 @@ public abstract class Character : MonoBehaviour
 
     // смерть персонажа
     public abstract void DeathCharacter();
+
+    #endregion
+
+    #region Frame
+
+    // установить рамку персонажа в зависимости от уровня
+    public void SetFrameCharacter()
+    {
+        if(characterLevel < 40)
+        {
+            outputCharacterFrame.sprite = inputCharacterFrame[0];
+        }
+        else if(characterLevel < 80)
+        {
+            outputCharacterFrame.sprite = inputCharacterFrame[1];
+        }
+        else
+        {
+            outputCharacterFrame.sprite = inputCharacterFrame[2];
+        }
+    }
 
     #endregion
 }
