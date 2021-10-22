@@ -45,11 +45,17 @@ public class Menu : MonoBehaviour
         SetTextButtonsAction();
     }
 
+    #region ButtonName
+
     // установить название кнопки в меню
     public void SetMenuButtonName(string name)
     {
         menuButtonName.text = name;
     }
+
+    #endregion
+
+    #region ButtonInteraction
 
     // установить иконку кнопки взаимодействия с NPC
     public void SetIconButtonInteractionNPC(int number)
@@ -63,6 +69,10 @@ public class Menu : MonoBehaviour
         buttonInteractionNPC.SetActive(isVisibility);
     }
 
+    #endregion
+
+    #region Clock
+
     // установить видимость часов
     public void SetVisibilityClock(bool isVisibility)
     {
@@ -71,6 +81,10 @@ public class Menu : MonoBehaviour
             clock.SetActive(isVisibility);
         }
     }
+
+    #endregion
+
+    #region ButtonActions
 
     // установить видимость кнопки первого действия
     public void SetVisibilityButtonFirstAction(bool isVisibility)
@@ -100,6 +114,10 @@ public class Menu : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region ItemMenuPlayer
+
     // открыть элемент меню игрока
     public void OpenItemMenuPlayer(int item)
     {
@@ -111,6 +129,8 @@ public class Menu : MonoBehaviour
     {
         itemsPlayerMenu[item].SetBool("isOpen", false);
     }
+
+    #endregion
 
     #endregion
 }

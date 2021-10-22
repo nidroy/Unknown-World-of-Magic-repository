@@ -6,20 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
+    public string characterClass; // класс персонажа
     public int maximumCharacterXP = 100; // максимальное XP персонажа
     public Image characterXPImage; // линия XP персонажа
     public NPC npc; // неигровой персонаж
-    public Clock clock; // часы
     public bool isDodgeCharacter; // возможно ли уклонение персонажа
     public bool isDodgingBlow; // возможно ли увернуться от удара врага
 
     private void Update()
     {
-        RegenerationHP(Time.deltaTime);
+        SetMaximumHPCharacter(100 + characteristics.SetMaximumHPStrength());
+        RegenerationHP(Time.deltaTime * (1 + (float)characteristics.strength / 10));
         LoweringHP();
         IncreaseLineXP();
         IncreaseLevelCharacter();
-        SetDamageCharacter(20, 60);
+        ChangeDamageCharacter(characteristics.SetDamageCharacteristic(characterClass));
         TakeDamageEnemy(clock.seconds);
         DeathCharacter();
         SetFrameCharacter();
@@ -37,6 +38,27 @@ public class Player : Character
         else
         {
             SetNameCharacter(nameText.text);
+        }
+    }
+
+    #endregion
+
+    #region Class
+
+    // установить класс персонажа
+    public void SetClassCharacter(int numberClass)
+    {
+        if(numberClass == 0)
+        {
+            characterClass = "Archer";
+        }
+        else if(numberClass == 1)
+        {
+            characterClass = "Warrior";
+        }
+        else if(numberClass == 2)
+        {
+            characterClass = "Magician";
         }
     }
 
@@ -85,13 +107,19 @@ public class Player : Character
         SetMissCharacter(10);
         if(isDodgingBlow)
         {
-            SetMissCharacter(50);
+            SetMissCharacter(50 - characteristics.miss);
         }
         if (isFight && seconds <= Random.Range(1, 8) && Random.Range(0, 100) < 100 - characterMiss)
         {
             TakeDamage(npc.characterDamage);
             isFight = false;
         }
+    }
+
+    // изменить урон персонажа
+    public void ChangeDamageCharacter(int damage)
+    {
+        SetDamageCharacter(20 + damage, 60 + damage);
     }
 
     #endregion

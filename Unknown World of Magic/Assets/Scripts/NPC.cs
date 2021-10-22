@@ -7,7 +7,6 @@ public class NPC : Character
 {
     public Sprite[] characterClassSprite; // поля ввода классов персонажа
     public Player player; // игрок
-    public Clock clock; // часы
 
     private void Update()
     {
@@ -56,7 +55,7 @@ public class NPC : Character
     // получить урон от игрока
     public void TakeDamagePlayer()
     {
-        SetMissCharacter(30);
+        SetMissCharacter(30 - characteristics.miss);
         if (isFight && Random.Range(0, 100) < 100 - characterMiss)
         {
             TakeDamage(player.characterDamage);
@@ -97,7 +96,7 @@ public class NPC : Character
         SetGenderCharacter("Мужчина");
         PrintClassCharacter(SetClassCharacter(characterClassSprite[0]));
         SetLevelCharacter(100);
-        maximumCharacterHP = 1000;
+        SetMaximumHPCharacter(1000);
         RegenerationHP(Time.deltaTime * 100);
         SetDamageCharacter(1000, 1200);
         characterXP = 1000;
@@ -110,7 +109,7 @@ public class NPC : Character
         SetGenderCharacter("Женщина");
         PrintClassCharacter(SetClassCharacter(characterClassSprite[1]));
         SetLevelCharacter(2);
-        maximumCharacterHP = 100;
+        SetMaximumHPCharacter(100);
         RegenerationHP(Time.deltaTime * 2);
         SetDamageCharacter(20, 40);
         characterXP = 20;
@@ -123,7 +122,7 @@ public class NPC : Character
         SetGenderCharacter("Мужчина");
         PrintClassCharacter(SetClassCharacter(characterClassSprite[2]));
         SetLevelCharacter(10);
-        maximumCharacterHP = 200;
+        SetMaximumHPCharacter(200);
         RegenerationHP(Time.deltaTime * 4);
         SetDamageCharacter(60, 100);
         characterXP = 100;
@@ -142,6 +141,7 @@ public class NPC : Character
             characterHP = maximumCharacterHP;
             characterHPImage.fillAmount = 1;
             clock.isStop = true;
+            characteristics.RaisePointsCharacteristic(0);
         }
     }
 

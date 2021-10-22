@@ -9,8 +9,8 @@ public abstract class Character : MonoBehaviour
     public Text characterNameText; // поле вывода имени персонажа
     public string characterGender; // пол персонажа
     public Image characterClassImage; // поле вывода класса персонажа
-    public int maximumCharacterHP = 100; // максимальное HP персонажа
-    public float characterHP = 100; // HP персонажа
+    public int maximumCharacterHP; // максимальное HP персонажа
+    public float characterHP = 110; // HP персонажа
     public Image characterHPImage; // линия HP персонажа
     public int characterLevel = 1; // уровень персонажа
     public Text characterLevelText; // поле вывода уровня персонажа
@@ -21,6 +21,8 @@ public abstract class Character : MonoBehaviour
     public int characterMiss; // промахи персонажа 
     public Sprite[] inputCharacterFrame; // поля ввода рамок вокруг персонажа
     public Image outputCharacterFrame; // поле вывода рамки вокруг персонажа
+    public Characteristics characteristics; // характеристики
+    public Clock clock; // часы
 
     #region Name
 
@@ -86,6 +88,12 @@ public abstract class Character : MonoBehaviour
         characterHP = HP;
     }
 
+    // установить максимальное HP персонажа
+    public void SetMaximumHPCharacter(int maxHP)
+    {
+        maximumCharacterHP = maxHP;
+    }
+
     #endregion
 
     #region Level
@@ -128,6 +136,8 @@ public abstract class Character : MonoBehaviour
     {
         characterMiss = miss;
     }
+
+    // 
 
     #endregion
 
