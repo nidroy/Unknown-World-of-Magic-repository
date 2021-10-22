@@ -2048,6 +2048,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1593969961}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: EscapeBattleCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &341523242
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,7 +6026,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1006873219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6597,7 +6609,6 @@ MonoBehaviour:
   seconds: 11
   player: {fileID: 1593969961}
   enemy: {fileID: 817538407}
-  isStop: 0
 --- !u!1 &1172137468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7459,7 +7470,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1293464888}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1293464888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8763,6 +8786,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetTextButtonsAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &1505822815
 GameObject:
   m_ObjectHideFlags: 0
@@ -9218,6 +9253,7 @@ MonoBehaviour:
   npc: {fileID: 817538407}
   isDodgeCharacter: 0
   isDodgingBlow: 0
+  menu: {fileID: 2104969296}
 --- !u!1 &1614936125
 GameObject:
   m_ObjectHideFlags: 0
@@ -9353,7 +9389,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1626317764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12518,6 +12554,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1698824983}
         m_TargetAssemblyTypeName: Location, Assembly-CSharp
         m_MethodName: ChangeLocation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1593969961}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: EscapeBattleCharacter
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

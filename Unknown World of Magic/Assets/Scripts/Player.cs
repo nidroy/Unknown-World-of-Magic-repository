@@ -12,6 +12,7 @@ public class Player : Character
     public NPC npc; // неигровой персонаж
     public bool isDodgeCharacter; // возможно ли уклонение персонажа
     public bool isDodgingBlow; // возможно ли увернуться от удара врага
+    public Menu menu; // меню
 
     private void Update()
     {
@@ -159,6 +160,21 @@ public class Player : Character
         if (characterHPImage.fillAmount == 0)
         {
             SceneManager.LoadScene(0);
+        }
+    }
+
+    #endregion
+
+    #region Battle
+
+    // побег персонажа с поле боя
+    public void EscapeBattleCharacter()
+    {
+        if(menu.clock.activeSelf)
+        {
+            clock.StopTimer();
+            StartEndBattle(false);
+            npc.StartEndBattle(false);
         }
     }
 

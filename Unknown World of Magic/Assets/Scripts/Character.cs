@@ -146,10 +146,12 @@ public abstract class Character : MonoBehaviour
     // начать или закончить сражение
     public void StartEndBattle(bool isStartEnd)
     {
-        if (location.locationNumber != 0)
+        if (location.locationNumber == 0)
         {
-            isFight = isStartEnd;
+            isStartEnd = false;
         }
+
+        isFight = isStartEnd;
     }
 
     #endregion

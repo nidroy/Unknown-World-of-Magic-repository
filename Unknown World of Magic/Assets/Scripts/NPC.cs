@@ -140,7 +140,7 @@ public class NPC : Character
             player.SetXPCharacter((int)characterXP);
             characterHP = maximumCharacterHP;
             characterHPImage.fillAmount = 1;
-            clock.isStop = true;
+            clock.StopTimer();
             characteristics.RaisePointsCharacteristic(0);
         }
     }

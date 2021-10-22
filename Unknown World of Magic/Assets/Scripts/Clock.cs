@@ -11,7 +11,6 @@ public class Clock : MonoBehaviour
     public float seconds = 11; // секунды
     public Player player; // главный герой
     public NPC enemy; // враг
-    public bool isStop; // остановка таймера
 
     private void Update()
     {
@@ -24,7 +23,6 @@ public class Clock : MonoBehaviour
         seconds -= Time.deltaTime;
         PrintTimer();
         ResetTimer();
-        StopTimer();
     }
 
     // вывод времени на экран
@@ -48,15 +46,11 @@ public class Clock : MonoBehaviour
     }
 
     // остановить таймер
-    private void StopTimer()
+    public void StopTimer()
     {
-        if(isStop)
-        {
-            isStop = false;
-            menu.SetVisibilityButtonFirstAction(false);
-            menu.SetVisibilityButtonSecondAction(false);
-            menu.SetVisibilityButtonInteractionNPC(true);
-            menu.SetVisibilityClock(false);
-        }
+        menu.SetVisibilityButtonFirstAction(false);
+        menu.SetVisibilityButtonSecondAction(false);
+        menu.SetVisibilityButtonInteractionNPC(true);
+        menu.SetVisibilityClock(false);
     }
 }

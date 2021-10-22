@@ -25,6 +25,12 @@ public class Menu : MonoBehaviour
         }
     }
 
+    // выйти из игры
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     #endregion
 
     #region PlayerMenu
@@ -39,11 +45,6 @@ public class Menu : MonoBehaviour
     public Text[] buttonsActionText; // текст на кнопках действий
     public Player player; // главный герой
     public Animator[] itemsPlayerMenu; // элементы меню игрока
-
-    private void Update()
-    {
-        SetTextButtonsAction();
-    }
 
     #region ButtonName
 
@@ -76,10 +77,12 @@ public class Menu : MonoBehaviour
     // установить видимость часов
     public void SetVisibilityClock(bool isVisibility)
     {
-        if (location.locationNumber != 0)
+        if(location.locationNumber == 0)
         {
-            clock.SetActive(isVisibility);
+            isVisibility = false;
         }
+
+        clock.SetActive(isVisibility);
     }
 
     #endregion
@@ -89,28 +92,27 @@ public class Menu : MonoBehaviour
     // установить видимость кнопки первого действия
     public void SetVisibilityButtonFirstAction(bool isVisibility)
     {
-        if (location.locationNumber != 0)
-        {
-            buttonsAction[0].SetActive(isVisibility);
-        }
+        buttonsAction[0].SetActive(isVisibility);
     }
 
     // установить видимость кнопки второго действия
     public void SetVisibilityButtonSecondAction(bool isVisibility)
     {
-        if (location.locationNumber != 0)
-        {
-            buttonsAction[1].SetActive(isVisibility);
-        }
+        buttonsAction[1].SetActive(isVisibility);
     }
 
     // установить текст на кнопках действий
-    private void SetTextButtonsAction()
+    public void SetTextButtonsAction()
     {
         if (player.isFight)
         {
             buttonsActionText[0].text = "Атаковать";
             buttonsActionText[1].text = "Уклониться";
+        }
+        else
+        {
+            buttonsActionText[0].text = "Принять";
+            buttonsActionText[1].text = "Отказаться";
         }
     }
 
