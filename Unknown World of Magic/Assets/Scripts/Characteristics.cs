@@ -14,6 +14,7 @@ public class Characteristics : MonoBehaviour
     public int maximumHP; // максимальное HP
     public int[] characteristicsPoints; // очки характеристик и доступные очки
     public Text[] characteristicsText; // поля вывода очков характеристик и доступных очков
+    public Text descriptionText; // поле вывода описания характеристики
 
     private void Update()
     {
@@ -100,6 +101,27 @@ public class Characteristics : MonoBehaviour
     {
         maximumHP = strength * 10;
         return maximumHP;
+    }
+
+    #endregion
+
+    #region Help
+
+    // вывод на экран описания характеристики
+    public void PrintDescriptionCharacteristic(int numberCharacteristic)
+    {
+        if(numberCharacteristic == 1)
+        {
+            descriptionText.text = "Сила увеличивает количество здоровья и скорость его восстановления.";
+        }
+        else if(numberCharacteristic == 2)
+        {
+            descriptionText.text = "Ловкость увеличивает вероятность попадания по противнику и вероятность уклонения от атак противника.";
+        }
+        else if(numberCharacteristic == 3)
+        {
+            descriptionText.text = "Интеллект увеличивает эффективность навыков персонажа.";
+        }
     }
 
     #endregion
