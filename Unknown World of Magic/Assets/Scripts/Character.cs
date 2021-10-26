@@ -23,6 +23,7 @@ public abstract class Character : MonoBehaviour
     public Image outputCharacterFrame; // поле вывода рамки вокруг персонажа
     public Characteristics characteristics; // характеристики
     public Clock clock; // часы
+    public Skills skills; // навыки
 
     #region Name
 

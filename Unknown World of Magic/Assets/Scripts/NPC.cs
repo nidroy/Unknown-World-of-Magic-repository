@@ -60,6 +60,21 @@ public class NPC : Character
         {
             TakeDamage(player.characterDamage);
         }
+        if (isFight && skills.isDoubleAttack)
+        {
+            TakeDamage(player.characterDamage);
+        }
+        if (isFight && skills.isTripleAttack)
+        {
+            if (Random.Range(0, 100) < 100 - characterMiss)
+            {
+                TakeDamage(player.characterDamage);
+            }
+            if (Random.Range(0, 100) < 100 - characterMiss)
+            {
+                TakeDamage(player.characterDamage);
+            }
+        }
         isFight = false;
         player.SetDodge(false);
     }

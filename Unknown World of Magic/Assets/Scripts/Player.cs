@@ -13,15 +13,16 @@ public class Player : Character
     public bool isDodgeCharacter; // возможно ли уклонение персонажа
     public bool isDodgingBlow; // возможно ли увернуться от удара врага
     public Menu menu; // меню
+    public bool isSecondLife = true; // вторая жизнь персонажа
 
     private void Update()
     {
-        SetMaximumHPCharacter(100 + characteristics.SetMaximumHPStrength());
-        RegenerationHP(Time.deltaTime * (1 + (float)characteristics.strength / 10));
+        SetMaximumHPCharacter(100 + characteristics.SetMaximumHPStrength() + skills.SetMaximumHPSkills());
+        RegenerationHP(Time.deltaTime * characteristics.SetRegenerationHP() * skills.SetRegenerationHP());
         LoweringHP();
         IncreaseLineXP();
         IncreaseLevelCharacter();
-        ChangeDamageCharacter(characteristics.SetDamageCharacteristic(characterClass));
+        ChangeDamageCharacter(characteristics.SetDamageCharacteristic(characterClass) + skills.SetDamageSkills());
         TakeDamageEnemy(clock.seconds);
         DeathCharacter();
         SetFrameCharacter();
@@ -61,6 +62,9 @@ public class Player : Character
         {
             characterClass = "Magician";
         }
+
+        SetHPCharacter(maximumCharacterHP);
+        characterHPImage.fillAmount = 1;
     }
 
     #endregion
@@ -108,7 +112,7 @@ public class Player : Character
         SetMissCharacter(10);
         if(isDodgingBlow)
         {
-            SetMissCharacter(50 - characteristics.miss);
+            SetMissCharacter(50 - characteristics.miss - skills.SetMissSkills());
         }
         if (isFight && seconds <= Random.Range(1, 8) && Random.Range(0, 100) < 100 - characterMiss)
         {
@@ -159,7 +163,16 @@ public class Player : Character
     {
         if (characterHPImage.fillAmount == 0)
         {
-            SceneManager.LoadScene(0);
+            if (isSecondLife && skills.isSecondLife)
+            {
+                SetHPCharacter(maximumCharacterHP / 2);
+                characterHPImage.fillAmount = 0.5f;
+                isSecondLife = false;
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
@@ -176,6 +189,16 @@ public class Player : Character
             StartEndBattle(false);
             npc.StartEndBattle(false);
         }
+    }
+
+    #endregion
+
+    #region Life
+
+    // установить вторую жизнь персонажа
+    public void SetSecondLifeCharacter()
+    {
+        isSecondLife = true;
     }
 
     #endregion

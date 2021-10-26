@@ -9,9 +9,9 @@ public class Characteristics : MonoBehaviour
     public int strength; // сила
     public int agility; // ловкость
     public int intelligence; // интеллект
-    public int damage; // урон
-    public int miss; // промахи
-    public int maximumHP; // максимальное HP
+    public int damage; // дополнительный урон от характеристик
+    public int miss; // дополнительные промахи от характеристик
+    public int maximumHP; // дополнительное максимальное HP от характеристик
     public int[] characteristicsPoints; // очки характеристик и доступные очки
     public Text[] characteristicsText; // поля вывода очков характеристик и доступных очков
     public Text descriptionText; // поле вывода описания характеристики
@@ -101,6 +101,13 @@ public class Characteristics : MonoBehaviour
     {
         maximumHP = strength * 10;
         return maximumHP;
+    }
+
+    // установить востонавление HP
+    public float SetRegenerationHP()
+    {
+        float regenerationHP = 1 + (float)strength / 10;
+        return regenerationHP;
     }
 
     #endregion
