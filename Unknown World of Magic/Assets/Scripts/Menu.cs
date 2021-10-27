@@ -130,6 +130,7 @@ public class Menu : MonoBehaviour
     public void CloseItemMenuPlayer(int item)
     {
         itemsPlayerMenu[item].SetBool("isOpen", false);
+        SetMenuButtonName("");
     }
 
     #endregion

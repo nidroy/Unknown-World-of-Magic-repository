@@ -66,13 +66,7 @@ public class Player : Character
 
     #endregion
 
-    #region XP
-
-    // установить XP персонажа
-    public void SetXPCharacter(int XP)
-    {
-        characterXP += XP;
-    }    
+    #region XP    
 
     // увеличить линию XP
     public void IncreaseLineXP()

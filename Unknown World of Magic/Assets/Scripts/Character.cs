@@ -24,6 +24,7 @@ public abstract class Character : MonoBehaviour
     public Characteristics characteristics; // характеристики
     public Clock clock; // часы
     public Skills skills; // навыки
+    public int characterGold; // золото персонажа
 
     #region Name
 
@@ -93,6 +94,16 @@ public abstract class Character : MonoBehaviour
     public void SetMaximumHPCharacter(int maxHP)
     {
         maximumCharacterHP = maxHP;
+    }
+
+    #endregion
+
+    #region XP
+
+    // установить XP персонажа
+    public virtual void SetXPCharacter(int XP)
+    {
+        characterXP += XP;
     }
 
     #endregion
@@ -180,6 +191,19 @@ public abstract class Character : MonoBehaviour
         else
         {
             outputCharacterFrame.sprite = inputCharacterFrame[2];
+        }
+    }
+
+    #endregion
+
+    #region Gold
+
+    // установить количество золота персонажа
+    public virtual void SetGoldCharacter(int gold)
+    {
+        if (characterGold + gold > 0)
+        {
+            characterGold += gold;
         }
     }
 

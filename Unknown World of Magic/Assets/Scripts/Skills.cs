@@ -49,7 +49,7 @@ public class Skills : MonoBehaviour
             SetDescriptionSkill(0, 5, 0, 0, 0, 0, "подожжённая стрела - стрела с наконечником из зуба дракона, наносящая дополнительный урон огнем.");
             SetDescriptionSkill(1, 0, 10, 0, 0, 0, "острый взгляд - глаз персонажа способен заметить мельчайшие движения, благодаря чему персонажу легче уворачиваться от атак.");
             SetDescriptionSkill(2, 20, 0, 0, 0, 0, "отравленная стрела - стрела пропитанная ядом гидры, наносящая значительный дополнительный урон ядом.");
-            SetDescriptionSkill(3, 0, 0, 0, 0, 50, "карманник - навык, позволяющий собирать больше золота с убитых врагов.");
+            SetDescriptionSkill(3, 0, 0, 0, 0, 60, "карманник - навык, позволяющий собирать больше золота с убитых врагов.");
             SetDescriptionSkill(4, 0, 0, 0, 0, 0, "тройной выстрел - персонаж выпускает по три стрелы за раз.");
         }
         else if(player.characterClass == "Warrior")
@@ -222,6 +222,21 @@ public class Skills : MonoBehaviour
             player.SetHPCharacter(player.maximumCharacterHP);
             player.SetHPImageCharacter();
         }
+    }
+
+    #endregion
+
+    #region Gold
+
+    // установить количество золота от навыков
+    public int SetGoldSkills()
+    {
+        int goldSkill = 0;
+        if(gold != 0)
+        {
+            goldSkill = gold + characteristics.intelligence;
+        }
+        return goldSkill;
     }
 
     #endregion

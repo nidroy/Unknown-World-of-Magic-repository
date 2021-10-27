@@ -3476,18 +3476,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2104969296}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: SetMenuButtonName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2104969296}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: CloseItemMenuPlayer
         m_Mode: 3
         m_Arguments:
@@ -5741,6 +5729,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 84de0e53e4ebf0e42be94394945ba295, type: 3}
   - {fileID: 21300000, guid: 0c117a25330d9f04f9d01e9cfdb1f98e, type: 3}
   - {fileID: 21300000, guid: f53258d70b1ea4746b7efee9f14dad21, type: 3}
+  goldText: {fileID: 1802239616}
+  player: {fileID: 1593969961}
 --- !u!114 &649391193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7295,18 +7285,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2104969296}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: SetMenuButtonName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2104969296}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: CloseItemMenuPlayer
         m_Mode: 3
         m_Arguments:
@@ -7846,6 +7824,7 @@ MonoBehaviour:
   characteristics: {fileID: 1405914457}
   clock: {fileID: 1147174562}
   skills: {fileID: 1380847573}
+  characterGold: 0
   characterClassSprite:
   - {fileID: 21300000, guid: 068a0f5b7f8ae9c42b6373e76c82a7df, type: 3}
   - {fileID: 21300000, guid: 67379bdf24016be439341b054328f51b, type: 3}
@@ -9155,7 +9134,7 @@ GameObject:
   - component: {fileID: 1017407423}
   - component: {fileID: 1017407422}
   m_Layer: 5
-  m_Name: Potion
+  m_Name: Amulet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9201,7 +9180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 56db046d8e5dc4e4f95419a90efcb002, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 06eb647fe5f664c4ab94269f973adbbc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12941,18 +12920,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2104969296}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: SetMenuButtonName
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2104969296}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: CloseItemMenuPlayer
         m_Mode: 3
         m_Arguments:
@@ -13076,6 +13043,7 @@ MonoBehaviour:
   characteristics: {fileID: 1405914457}
   clock: {fileID: 1147174562}
   skills: {fileID: 1380847573}
+  characterGold: 0
   characterClass: 
   maximumCharacterXP: 100
   characterXPImage: {fileID: 1247587}

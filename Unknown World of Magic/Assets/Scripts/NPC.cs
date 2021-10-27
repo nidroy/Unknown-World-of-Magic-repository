@@ -50,6 +50,16 @@ public class NPC : Character
 
     #endregion
 
+    #region XP
+
+    // установить XP персонажа
+    public override void SetXPCharacter(int XP)
+    {
+        characterXP = XP;
+    }
+
+    #endregion
+
     #region Damage
 
     // получить урон от игрока
@@ -114,7 +124,8 @@ public class NPC : Character
         SetMaximumHPCharacter(1000);
         RegenerationHP(Time.deltaTime * 100);
         SetDamageCharacter(1000, 1200);
-        characterXP = 1000;
+        SetXPCharacter(1000);
+        SetGoldCharacter(10000);
     }
 
     // разбойник
@@ -127,7 +138,8 @@ public class NPC : Character
         SetMaximumHPCharacter(100);
         RegenerationHP(Time.deltaTime * 2);
         SetDamageCharacter(20, 40);
-        characterXP = 20;
+        SetXPCharacter(20);
+        SetGoldCharacter(10);
     }
 
     // леший
@@ -140,7 +152,8 @@ public class NPC : Character
         SetMaximumHPCharacter(200);
         RegenerationHP(Time.deltaTime * 4);
         SetDamageCharacter(60, 100);
-        characterXP = 100;
+        SetXPCharacter(100);
+        SetGoldCharacter(0);
     }
 
     #endregion
@@ -153,11 +166,22 @@ public class NPC : Character
         if(characterHPImage.fillAmount == 0)
         {
             player.SetXPCharacter((int)characterXP);
+            player.SetGoldCharacter(characterGold + skills.SetGoldSkills());
             characterHP = maximumCharacterHP;
             characterHPImage.fillAmount = 1;
             clock.StopTimer();
             characteristics.RaisePointsCharacteristic(0);
         }
+    }
+
+    #endregion
+
+    #region Gold
+
+    // установить количество золота персонажа
+    public override void SetGoldCharacter(int gold)
+    {
+        characterGold = gold;
     }
 
     #endregion
