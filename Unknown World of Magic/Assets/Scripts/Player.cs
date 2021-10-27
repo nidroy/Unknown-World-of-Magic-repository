@@ -62,9 +62,6 @@ public class Player : Character
         {
             characterClass = "Magician";
         }
-
-        SetHPCharacter(maximumCharacterHP);
-        characterHPImage.fillAmount = 1;
     }
 
     #endregion
@@ -84,6 +81,16 @@ public class Player : Character
         {
             characterXPImage.fillAmount += Time.deltaTime;
         }
+    }
+
+    #endregion
+
+    #region HP
+
+    // установить полоску HP персонажа при обновлении максимального HP
+    public void SetHPImageCharacter()
+    {
+        characterHPImage.fillAmount = 1;
     }
 
     #endregion

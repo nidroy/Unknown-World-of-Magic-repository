@@ -220,6 +220,7 @@ public class Skills : MonoBehaviour
         if (player.characterHP > player.maximumCharacterHP)
         {
             player.SetHPCharacter(player.maximumCharacterHP);
+            player.SetHPImageCharacter();
         }
     }
 

@@ -462,7 +462,7 @@ RectTransform:
   m_Children:
   - {fileID: 519758761}
   m_Father: {fileID: 439272446}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2900,15 +2900,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1017407421}
-  - {fileID: 992366184}
-  - {fileID: 633900472}
-  - {fileID: 22548650}
-  - {fileID: 1460200527}
-  - {fileID: 1707078825}
   - {fileID: 1949929665}
-  - {fileID: 1961821247}
+  - {fileID: 992366184}
+  - {fileID: 1017407421}
+  - {fileID: 1707078825}
+  - {fileID: 1460200527}
+  - {fileID: 22548650}
   - {fileID: 1206809525}
+  - {fileID: 1961821247}
+  - {fileID: 633900472}
   - {fileID: 1806344415}
   - {fileID: 1849796711}
   m_Father: {fileID: 649391195}
@@ -3033,6 +3033,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 649391192}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: SetStartEquipmentElements
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4373,6 +4385,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 649391192}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: SetStartEquipmentElements
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &517189959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5525,7 +5549,7 @@ RectTransform:
   m_Children:
   - {fileID: 1615912030}
   m_Father: {fileID: 439272446}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5661,6 +5685,7 @@ GameObject:
   - component: {fileID: 649391194}
   - component: {fileID: 649391193}
   - component: {fileID: 649391191}
+  - component: {fileID: 649391192}
   m_Layer: 5
   m_Name: Equipment
   m_TagString: Untagged
@@ -5687,6 +5712,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &649391192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649391190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00dedfb13e66ae4287ce816c3a7f420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipmentElements:
+  - {fileID: 1949929666}
+  - {fileID: 992366185}
+  - {fileID: 1017407422}
+  - {fileID: 1707078826}
+  - {fileID: 1460200528}
+  - {fileID: 22548651}
+  - {fileID: 1206809526}
+  - {fileID: 1961821248}
+  - {fileID: 633900473}
+  startEquipmentElements:
+  - {fileID: 21300000, guid: 6c8415042e347434abf96e8edd2bd9bb, type: 3}
+  - {fileID: 21300000, guid: 75b406d89fdc92846a9b9ab3b00136fe, type: 3}
+  - {fileID: 21300000, guid: ff8444197b8825b4e94c3ffc4c98f31a, type: 3}
+  - {fileID: 21300000, guid: 84de0e53e4ebf0e42be94394945ba295, type: 3}
+  - {fileID: 21300000, guid: 0c117a25330d9f04f9d01e9cfdb1f98e, type: 3}
+  - {fileID: 21300000, guid: f53258d70b1ea4746b7efee9f14dad21, type: 3}
 --- !u!114 &649391193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9120,7 +9174,7 @@ RectTransform:
   m_Children:
   - {fileID: 2038144794}
   m_Father: {fileID: 439272446}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10234,7 +10288,7 @@ RectTransform:
   m_Children:
   - {fileID: 828669619}
   m_Father: {fileID: 439272446}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -13316,7 +13370,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1626317764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13582,6 +13636,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 649391192}
+        m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
+        m_MethodName: SetStartEquipmentElements
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -14138,7 +14204,7 @@ RectTransform:
   m_Children:
   - {fileID: 2018414943}
   m_Father: {fileID: 439272446}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15880,7 +15946,7 @@ RectTransform:
   m_Children:
   - {fileID: 2100603956}
   m_Father: {fileID: 439272446}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
