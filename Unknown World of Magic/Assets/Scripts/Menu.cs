@@ -67,7 +67,10 @@ public class Menu : MonoBehaviour
     // установить видимость кнопки взаимодействия с NPC
     public void SetVisibilityButtonInteractionNPC(bool isVisibility)
     {
-        buttonInteractionNPC.SetActive(isVisibility);
+        if (!player.isFight)
+        {
+            buttonInteractionNPC.SetActive(isVisibility);
+        }
     }
 
     #endregion
@@ -106,13 +109,15 @@ public class Menu : MonoBehaviour
     {
         if (player.isFight)
         {
+            location.SetText("Главный герой, недолго думая, решил атаковать противника, пока тот был чем-то отвлечён.");
             buttonsActionText[0].text = "Атаковать";
             buttonsActionText[1].text = "Уклониться";
         }
         else
         {
-            buttonsActionText[0].text = "Принять";
-            buttonsActionText[1].text = "Отказаться";
+            location.SetText("Приветствую тебя путник. Что я могу тебе предложить?");
+            buttonsActionText[0].text = "Задание";
+            buttonsActionText[1].text = "Торговля";
         }
     }
 

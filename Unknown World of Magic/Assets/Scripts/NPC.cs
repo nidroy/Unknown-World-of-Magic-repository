@@ -171,6 +171,7 @@ public class NPC : Character
             characterHPImage.fillAmount = 1;
             clock.StopTimer();
             characteristics.RaisePointsCharacteristic(0);
+            location.SetTextLocation();
         }
     }
 

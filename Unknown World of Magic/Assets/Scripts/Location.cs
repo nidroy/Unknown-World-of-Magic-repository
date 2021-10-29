@@ -8,12 +8,14 @@ public class Location : MonoBehaviour
     public int locationNumber = 0; // номер локации
     public string locationName; // название локации
     public Text locationNameText; // поле вывода названия локации
+    public Text locationText; // поле вывода текста на локации
     public GameObject[] locationControlButtons; // кнопки управления локацией
     public Menu menu; // меню
 
     private void Start()
     {
         Fortress();
+        SetTextLocation();
     }
 
     #region Movement
@@ -88,6 +90,33 @@ public class Location : MonoBehaviour
     {
         SetNameLocation("Лес");
         locationControlButtons[1].SetActive(false);
+    }
+
+    #endregion
+
+    #region TextLocation
+
+    // установить текст на локации в зависимости от номера локации
+    public void SetTextLocation()
+    {
+        if(locationNumber == 0)
+        {
+            SetText("Крепость - самое безопасное место в округе. Сюда стекаются большинство торговцев и ремесленников. Здесь расположена, алея гильдий, где можно встретить главу самой могущественной гильдии.");
+        }
+        else if(locationNumber == 1)
+        {
+            SetText("Зелёная поляна расположенная недалеко от ворот в город. На поляне расположилась банда разбойников, обкрадывающая торговцев, которые идут в город.");
+        }
+        else if(locationNumber == 2)
+        {
+            SetText("Густой и тёмный лес, из кустов которого доносятся звериные вопли. Эта чаща принадлежит Лешим. Они следят за порядком в лесу и не любят чужаков из города.");
+        }
+    }
+
+    // установить текст на локации
+    public void SetText(string text)
+    {
+        locationText.text = text;
     }
 
     #endregion
