@@ -7,7 +7,6 @@ using UnityEngine.TestTools;
 [TestFixture]
 public class UnitTests
 {
-
     [Test]
     public void CalculateDamage()
     {

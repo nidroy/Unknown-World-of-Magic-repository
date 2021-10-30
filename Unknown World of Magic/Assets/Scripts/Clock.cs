@@ -51,6 +51,7 @@ public class Clock : MonoBehaviour
         menu.SetVisibilityButtonFirstAction(false);
         menu.SetVisibilityButtonSecondAction(false);
         menu.SetVisibilityButtonInteractionNPC(true);
+        seconds = 11;
         menu.SetVisibilityClock(false);
     }
 }

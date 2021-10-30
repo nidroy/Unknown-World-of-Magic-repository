@@ -1028,7 +1028,7 @@ GameObject:
   - component: {fileID: 72472623}
   - component: {fileID: 72472622}
   m_Layer: 5
-  m_Name: Background
+  m_Name: TaskText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1480,6 +1480,42 @@ MonoBehaviour:
       - m_Target: {fileID: 1593969961}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: DodgeBlow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 817538407}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: SetTrades
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 817538407}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: SetGivesTasks
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetTextButtonsAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2713,6 +2749,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 817538407}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: SetGivesTasks
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &341523242
 GameObject:
   m_ObjectHideFlags: 0
@@ -2800,7 +2848,7 @@ GameObject:
   - component: {fileID: 342372741}
   - component: {fileID: 342372740}
   m_Layer: 5
-  m_Name: Background
+  m_Name: TaskText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2957,7 +3005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &382704080
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3030,7 +3078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &400745692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5499,7 +5547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &562332305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6402,7 +6450,7 @@ GameObject:
   - component: {fileID: 641728279}
   - component: {fileID: 641728278}
   m_Layer: 5
-  m_Name: Background
+  m_Name: TaskText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8792,6 +8840,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 67379bdf24016be439341b054328f51b, type: 3}
   - {fileID: 21300000, guid: 023afbba79b95f347a047c7696110ab3, type: 3}
   player: {fileID: 1593969961}
+  isTrades: 0
+  isGivesTasks: 0
+  numberKilledNPC: 000000000000000000000000
 --- !u!1 &828669618
 GameObject:
   m_ObjectHideFlags: 0
@@ -11518,7 +11569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1232852103
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12715,7 +12766,7 @@ MonoBehaviour:
   - {fileID: 692035416}
   - {fileID: 462685276}
   mainSkill: {fileID: 490756097}
-  quantitySkills: 1
+  quantitySkills: 5
   newNumberSkill: 0
   oldNumberSkill: 0
   lineSkills:
@@ -12829,6 +12880,42 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1506512558}
+        m_TargetAssemblyTypeName: Tasks, Assembly-CSharp
+        m_MethodName: SetStartCompletingTask
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 817538407}
+        m_TargetAssemblyTypeName: NPC, Assembly-CSharp
+        m_MethodName: SetGivesTasks
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2104969296}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: SetTextButtonsAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1383957096
 MonoBehaviour:
@@ -14132,6 +14219,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0beae9a0b4574074389b46706e1ba197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tasks:
+  - {fileID: 400745691}
+  - {fileID: 1232852102}
+  - {fileID: 562332304}
+  taskText:
+  - {fileID: 1010176397}
+  - {fileID: 1359788580}
+  - {fileID: 554505333}
+  flagCompletedTask:
+  - {fileID: 2057372473}
+  - {fileID: 1911515982}
+  - {fileID: 382704079}
+  isStartCompletingTask: 000000
+  isCompletingTask: 000000
+  numberTask: 0
+  npc: {fileID: 817538407}
 --- !u!95 &1506512559
 Animator:
   serializedVersion: 3
@@ -16975,7 +17078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1911515983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18478,7 +18581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2057372474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18882,6 +18985,8 @@ MonoBehaviour:
   - {fileID: 1872632663}
   - {fileID: 1996402125}
   player: {fileID: 1593969961}
+  npc: {fileID: 817538407}
+  tasks: {fileID: 1506512558}
   itemsPlayerMenu:
   - {fileID: 1405914458}
   - {fileID: 1380847569}

@@ -7,6 +7,9 @@ public class NPC : Character
 {
     public Sprite[] characterClassSprite; // поля ввода классов персонажа
     public Player player; // игрок
+    public bool isTrades; // NPC занимается торговлей
+    public bool isGivesTasks; // NPC выдает задания
+    public int[] numberKilledNPC; // количество убитых NPC
 
     private void Update()
     {
@@ -152,7 +155,7 @@ public class NPC : Character
         SetMaximumHPCharacter(200);
         RegenerationHP(Time.deltaTime * 4);
         SetDamageCharacter(60, 100);
-        SetXPCharacter(100);
+        SetXPCharacter(50);
         SetGoldCharacter(0);
     }
 
@@ -172,7 +175,23 @@ public class NPC : Character
             clock.StopTimer();
             characteristics.RaisePointsCharacteristic(0);
             location.SetTextLocation();
+            IncreaseNumberKilledNPC(location.locationNumber);
         }
+    }
+
+    // установить количество убитых NPC на локации
+    public void SetNumberKilledNPC(int number)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            numberKilledNPC[i] = number;
+        }
+    }
+
+    // увеличить количество убитых NPC на локации
+    private void IncreaseNumberKilledNPC(int locationNumber)
+    {
+        numberKilledNPC[locationNumber] ++;
     }
 
     #endregion
@@ -183,6 +202,36 @@ public class NPC : Character
     public override void SetGoldCharacter(int gold)
     {
         characterGold = gold;
+    }
+
+    #endregion
+
+    #region Tasks
+
+    // установить возможность выдачи задания
+    public void SetGivesTasks(bool isGiveTask)
+    {
+        if(location.locationNumber == 0)
+        {
+            isGivesTasks = isGiveTask;
+        }
+        else
+        {
+            isGivesTasks = false;
+        }
+    }
+
+    #endregion
+
+    #region Trading
+
+    // установить возможность торговли с персонажем
+    public void SetTrades(bool isTrading)
+    {
+        if(!isGivesTasks && location.locationNumber == 0)
+        {
+            isTrades = isTrading;
+        }
     }
 
     #endregion

@@ -44,6 +44,8 @@ public class Menu : MonoBehaviour
     public GameObject[] buttonsAction; // кнопки действий
     public Text[] buttonsActionText; // текст на кнопках действий
     public Player player; // главный герой
+    public NPC npc; // неигровой персонаж
+    public Tasks tasks; // задания
     public Animator[] itemsPlayerMenu; // элементы меню игрока
 
     #region ButtonName
@@ -113,6 +115,24 @@ public class Menu : MonoBehaviour
             buttonsActionText[0].text = "Атаковать";
             buttonsActionText[1].text = "Уклониться";
         }
+        else if(npc.isGivesTasks)
+        {
+            buttonsActionText[0].text = "Принять";
+            buttonsActionText[1].text = "Откозаться";
+
+            if (tasks.numberTask == 0)
+            {
+                PrintTextTask(0, "Хочешь вступить в гильдию? Хорошо. Но для начала, помоги местным купцам. Убей 10 разбойников, которые обосновались на поляне недалеко от города.");
+            }
+            else if(tasks.numberTask == 1)
+            {
+                PrintTextTask(1, "Ты смог убедить меня, что умеешь сражаться. Ходят слухи, что лешие убили семью лесоруба, и ты, как член гильдии, должен отомстить за них. Иди в лес и убей 5 леших.");
+            }
+            else if(tasks.numberTask == 2)
+            {
+                PrintTextTask(2, "Ты хорошо проявил себя. Помнишь ты помог купцам, убив 10 разбойников? Главарь этой банды выжил, собрал ещё больше людей и вернулся на поляну. Ты должен наведаться к ним и убить 20 разбойников.");
+            }
+        }
         else
         {
             location.SetText("Приветствую тебя путник. Что я могу тебе предложить?");
@@ -136,6 +156,31 @@ public class Menu : MonoBehaviour
     {
         itemsPlayerMenu[item].SetBool("isOpen", false);
         SetMenuButtonName("");
+    }
+
+    #endregion
+
+    #region Tasks
+
+    // вывести текст задания на экран
+    private void PrintTextTask(int numberTask, string textTask)
+    {
+        if(tasks.isCompletingTask[2])
+        {
+            location.SetText("Молодец! Ты выполнил все задания.");
+            SetVisibilityButtonFirstAction(false);
+            buttonsActionText[1].text = "Уйти";
+        }
+        else if (tasks.isStartCompletingTask[numberTask])
+        {
+            location.SetText("Ты взял задание. Иди и выполни его.");
+            SetVisibilityButtonFirstAction(false);
+            buttonsActionText[1].text = "Уже иду";
+        }
+        else
+        {
+            location.SetText(textTask);
+        }
     }
 
     #endregion
