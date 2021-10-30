@@ -119,13 +119,13 @@ public class Tasks : MonoBehaviour
         }
         else if(numberTask == 1)
         {
-            player.SetGoldCharacter(100);
+            player.SetGoldCharacter(200);
             player.SetXPCharacter(400);
         }
         else if(numberTask == 2 && !isLastTaskCompleted)
         {
-            player.SetGoldCharacter(200);
-            player.SetXPCharacter(400);
+            player.SetGoldCharacter(400);
+            player.SetXPCharacter(800);
             isLastTaskCompleted = true;
         }
     }

@@ -14235,6 +14235,7 @@ MonoBehaviour:
   isCompletingTask: 000000
   numberTask: 0
   npc: {fileID: 817538407}
+  player: {fileID: 1593969961}
 --- !u!95 &1506512559
 Animator:
   serializedVersion: 3
