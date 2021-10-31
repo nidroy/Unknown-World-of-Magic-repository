@@ -25,6 +25,7 @@ public abstract class Character : MonoBehaviour
     public Clock clock; // часы
     public Skills skills; // навыки
     public int characterGold; // золото персонажа
+    public Equipment equipment; // снаряжение
 
     #region Name
 
@@ -201,7 +202,7 @@ public abstract class Character : MonoBehaviour
     // установить количество золота персонажа
     public virtual void SetGoldCharacter(int gold)
     {
-        if (characterGold + gold > 0)
+        if (characterGold + gold >= 0)
         {
             characterGold += gold;
         }

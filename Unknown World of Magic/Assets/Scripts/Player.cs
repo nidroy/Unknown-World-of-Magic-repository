@@ -17,12 +17,12 @@ public class Player : Character
 
     private void Update()
     {
-        SetMaximumHPCharacter(100 + characteristics.SetMaximumHPStrength() + skills.SetMaximumHPSkills());
-        RegenerationHP(Time.deltaTime * characteristics.SetRegenerationHP() * skills.SetRegenerationHP());
+        SetMaximumHPCharacter(100 + characteristics.SetMaximumHPStrength() + skills.SetMaximumHPSkills() + equipment.equipmentMaximumHP);
+        RegenerationHP(Time.deltaTime * characteristics.SetRegenerationHP() * skills.SetRegenerationHP() * equipment.equipmentRegenerationHP);
         LoweringHP();
         IncreaseLineXP();
         IncreaseLevelCharacter();
-        ChangeDamageCharacter(characteristics.SetDamageCharacteristic(characterClass) + skills.SetDamageSkills());
+        ChangeDamageCharacter(characteristics.SetDamageCharacteristic(characterClass) + skills.SetDamageSkills() + equipment.equipmentDamage);
         TakeDamageEnemy(clock.seconds);
         DeathCharacter();
         SetFrameCharacter();

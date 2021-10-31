@@ -169,7 +169,7 @@ public class NPC : Character
         if(characterHPImage.fillAmount == 0)
         {
             player.SetXPCharacter((int)characterXP);
-            player.SetGoldCharacter(characterGold + skills.SetGoldSkills());
+            player.SetGoldCharacter(characterGold + skills.SetGoldSkills() + equipment.equipmentGold);
             characterHP = maximumCharacterHP;
             characterHPImage.fillAmount = 1;
             clock.StopTimer();

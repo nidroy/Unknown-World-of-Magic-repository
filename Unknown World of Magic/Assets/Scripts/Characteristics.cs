@@ -132,4 +132,26 @@ public class Characteristics : MonoBehaviour
     }
 
     #endregion
+
+    #region Equipment
+
+    // установить силу в зависимости от снаряжения персонажа
+    public void SetStrengthEquipment(int equipmentStrength)
+    {
+        characteristicsPoints[1] += equipmentStrength;
+    }
+
+    // установить ловкость в зависимости от снаряжения персонажа
+    public void SetAgilityEquipment(int equipmentAgility)
+    {
+        characteristicsPoints[2] += equipmentAgility;
+    }
+
+    // установить интелект в зависимости от снаряжения персонажа
+    public void SetIntelligenceEquipment(int equipmentIntelligence)
+    {
+        characteristicsPoints[3] += equipmentIntelligence;
+    }
+
+    #endregion
 }
