@@ -276,7 +276,7 @@ public class Trading : MonoBehaviour
     // купить выбранный предмет
     public void BuyItem()
     {
-        if(descriptionItemSold.text != "" && player.characterGold >= itemPrice)
+        if(descriptionItemSold.text != "" && player.characterGold >= itemPrice && descriptionItemSold.text != "К сожалению, у тебя не хватает золота, чтобы купить этот предмет.")
         {
             equipment.SetEquipmentElements(numberItemsSold, itemsSoldImage[numberItemsSold].sprite);
             player.SetGoldCharacter(-1*itemPrice);
@@ -289,6 +289,11 @@ public class Trading : MonoBehaviour
             equipment.SetGold(gold);
             equipment.SetIntelligence(magicalKnowledge);
             itemsSold[numberItemsSold].SetActive(false);
+            SetItemDescription("");
+        }
+        else if(player.characterGold <= itemPrice)
+        {
+            SetItemDescription("К сожалению, у тебя не хватает золота, чтобы купить этот предмет.");
         }
     }
 
