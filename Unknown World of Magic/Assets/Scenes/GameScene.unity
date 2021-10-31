@@ -4133,6 +4133,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1192062695}
+        m_TargetAssemblyTypeName: Trading, Assembly-CSharp
+        m_MethodName: SetItemsSold
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 16
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &440074612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,7 +4956,7 @@ RectTransform:
   m_Children:
   - {fileID: 662416408}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -5549,6 +5561,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Equipment, Assembly-CSharp
         m_MethodName: SetPlayerIcon
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1192062695}
+        m_TargetAssemblyTypeName: Trading, Assembly-CSharp
+        m_MethodName: SetItemsSold
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8223,7 +8247,7 @@ RectTransform:
   m_Children:
   - {fileID: 1044053635}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -12696,13 +12720,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.364, y: 0.361, z: 1}
   m_Children:
-  - {fileID: 489603530}
   - {fileID: 2004121155}
-  - {fileID: 692135492}
   - {fileID: 1732093260}
   - {fileID: 1520422315}
-  - {fileID: 1646028069}
   - {fileID: 1556087868}
+  - {fileID: 489603530}
+  - {fileID: 692135492}
+  - {fileID: 1646028069}
   - {fileID: 2114773156}
   - {fileID: 427052188}
   - {fileID: 1750573016}
@@ -12729,6 +12753,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tradingWindowAnim: {fileID: 1192062696}
   npc: {fileID: 817538407}
+  itemsSoldSprite:
+  - {fileID: 21300000, guid: e3e0bf567e013164bab2b74e80ae37bf, type: 3}
+  - {fileID: 21300000, guid: 47684eba410fd484e912dee508527404, type: 3}
+  - {fileID: 21300000, guid: 34624a0e889b4f4418d79e7daefccd72, type: 3}
+  - {fileID: 21300000, guid: 7c0a062fdc5ea0149a863d771811d51e, type: 3}
+  - {fileID: 21300000, guid: 8661c2c7e325a33438f06b02458fd199, type: 3}
+  - {fileID: 21300000, guid: f66c057114b8725409847a8a8e83a75b, type: 3}
+  - {fileID: 21300000, guid: af838e5920baaaa4cbb24dab99c4458d, type: 3}
+  - {fileID: 21300000, guid: b2634b9e26cf5724eb4ed456b37f096a, type: 3}
+  - {fileID: 21300000, guid: 69b6fac54bf33d94f8b56a037beeb7bf, type: 3}
+  - {fileID: 21300000, guid: 6b5d537fb6d2b8b4abee9de72ec7c504, type: 3}
+  - {fileID: 21300000, guid: fdf9505acc4050143af4484d372ca54a, type: 3}
+  - {fileID: 21300000, guid: 59404f171a3d5694fa1650a8c37fc39f, type: 3}
+  - {fileID: 21300000, guid: f84b6dd0347a94f4a9a69ac911fc1f9d, type: 3}
+  - {fileID: 21300000, guid: f66c057114b8725409847a8a8e83a75b, type: 3}
+  - {fileID: 21300000, guid: 5bfb766ff8d9482479248b2c48378889, type: 3}
+  - {fileID: 21300000, guid: 0d2df74cd40ea7b4cb686dda25352114, type: 3}
+  - {fileID: 21300000, guid: 7faaccf2d22f97f4784fb9538b1eefb2, type: 3}
+  - {fileID: 21300000, guid: 0e1e758107246b04ba166904df626584, type: 3}
+  - {fileID: 21300000, guid: 41f927d1a0d01d74b8f392dc9d00a066, type: 3}
+  - {fileID: 21300000, guid: ae3208216b9856e408dcff020513465f, type: 3}
+  - {fileID: 21300000, guid: f66c057114b8725409847a8a8e83a75b, type: 3}
+  - {fileID: 21300000, guid: 8bcb07d9c2c4c484caf61c33f48e3dd8, type: 3}
+  - {fileID: 21300000, guid: 98ceb165e895b7f47ab880e0d1c64104, type: 3}
+  - {fileID: 21300000, guid: 255032d50ff584446bffa141b10865e6, type: 3}
+  itemsSoldImage:
+  - {fileID: 2004121156}
+  - {fileID: 1732093261}
+  - {fileID: 1520422316}
+  - {fileID: 1556087869}
+  - {fileID: 489603531}
+  - {fileID: 692135493}
+  - {fileID: 1646028070}
+  - {fileID: 2114773157}
 --- !u!95 &1192062696
 Animator:
   serializedVersion: 3
@@ -15782,7 +15840,7 @@ RectTransform:
   m_Children:
   - {fileID: 1875281319}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -15937,7 +15995,7 @@ RectTransform:
   m_Children:
   - {fileID: 1113115069}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -16974,6 +17032,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1192062695}
+        m_TargetAssemblyTypeName: Trading, Assembly-CSharp
+        m_MethodName: SetItemsSold
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1633953636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17122,7 +17192,7 @@ RectTransform:
   m_Children:
   - {fileID: 639797417}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -18076,7 +18146,7 @@ RectTransform:
   m_Children:
   - {fileID: 1173557848}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -20434,7 +20504,7 @@ RectTransform:
   m_Children:
   - {fileID: 310018995}
   m_Father: {fileID: 1192062694}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
