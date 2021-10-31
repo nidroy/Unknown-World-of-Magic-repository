@@ -291,7 +291,7 @@ public class Trading : MonoBehaviour
             itemsSold[numberItemsSold].SetActive(false);
             SetItemDescription("");
         }
-        else if(player.characterGold <= itemPrice)
+        else if(descriptionItemSold.text != "" && player.characterGold <= itemPrice)
         {
             SetItemDescription("К сожалению, у тебя не хватает золота, чтобы купить этот предмет.");
         }
