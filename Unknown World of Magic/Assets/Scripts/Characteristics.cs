@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class Characteristics : MonoBehaviour
 {
-    public int points; // доступные очки
-    public int strength; // сила
-    public int agility; // ловкость
-    public int intelligence; // интеллект
+    public int points = 10; // доступные очки
+    public int strength = 1; // сила
+    public int agility = 1; // ловкость
+    public int intelligence = 1; // интеллект
     public int damage; // дополнительный урон от характеристик
     public int miss; // дополнительные промахи от характеристик
     public int maximumHP; // дополнительное максимальное HP от характеристик

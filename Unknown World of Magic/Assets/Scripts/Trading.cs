@@ -298,4 +298,11 @@ public class Trading : MonoBehaviour
     }
 
     #endregion
+
+    // установить номер выбранного продаваемого предмета
+    public void SetNumberSoldItem(int number)
+    {
+        numberItemsSold = number;
+    }
+
 }
