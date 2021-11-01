@@ -115,10 +115,10 @@ public class Menu : MonoBehaviour
             buttonsActionText[0].text = "Атаковать";
             buttonsActionText[1].text = "Уклониться";
         }
-        else if(npc.isGivesTasks)
+        else if(npc.isGivesTasks && location.locationNumber == 0)
         {
             buttonsActionText[0].text = "Принять";
-            buttonsActionText[1].text = "Откозаться";
+            buttonsActionText[1].text = "Отказаться";
 
             if (tasks.numberTask == 0)
             {
