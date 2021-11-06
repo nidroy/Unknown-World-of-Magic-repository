@@ -15,7 +15,7 @@ public class Trading : MonoBehaviour
     public Sprite[] bacgroundItemsSoldSprite; // поля ввода заднего фона проданных предметов
     public Image[] bacgroundItemsSoldImage; // поле вывода заднего фона проданных предметов
     public GameObject[] itemsSold; // предметы на продажу
-    private int itemPrice; // цена предмета
+    public int itemPrice; // цена предмета
     public Equipment equipment; // снаряжение
     private int damage; // урон наносимый предметом
     private int protection; // защита предмета
@@ -268,7 +268,7 @@ public class Trading : MonoBehaviour
     #region Buy
 
     // установить цену предмета
-    private void SetPriceItem(int gold)
+    public void SetPriceItem(int gold)
     {
         itemPrice = gold;
     }
