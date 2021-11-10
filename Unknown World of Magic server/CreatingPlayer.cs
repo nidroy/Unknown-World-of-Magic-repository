@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Unknown_World_of_Magic_server
 {
-    class CreatingPlayer
+    public class CreatingPlayer
     {
-        public int numberClassPlayer = 1; // номер класса игрока
-        public string namePlayer; // имя игрока
+        public static int numberClassPlayer; // номер класса игрока
+        public static string namePlayer; // имя игрока
 
         // установить номер класса игрока
         public void SetNumberClassPlayer(int number)

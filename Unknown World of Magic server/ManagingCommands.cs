@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Unknown_World_of_Magic_server
 {
-    class ManagingCommands
+    public class ManagingCommands
     {
         private bool isCreatingPlayer = true; // этап создания игрока
 
@@ -18,7 +18,7 @@ namespace Unknown_World_of_Magic_server
         }
 
         // команды этапа создания игрока
-        private void PlayerCreationCommands(string command)
+        public void PlayerCreationCommands(string command)
         {
             if(command == "SetClassPlayer")
             {
@@ -43,7 +43,7 @@ namespace Unknown_World_of_Magic_server
                 creatingPlayer.SetPlayerName(command);
                 ManagingResponses responses = new ManagingResponses();
                 responses.SetServerResponse("Установлено имя игрока " + command);
-                Console.WriteLine("установлено имя игрока " + creatingPlayer.namePlayer);
+                Console.WriteLine("установлено имя игрока " + CreatingPlayer.namePlayer);
                 Console.WriteLine("установлен класс игрока " + creatingPlayer.GetNameClassPlayer());
             }
         }
