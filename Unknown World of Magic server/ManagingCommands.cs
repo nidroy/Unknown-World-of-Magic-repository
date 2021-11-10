@@ -6,7 +6,7 @@ namespace Unknown_World_of_Magic_server
 {
     public class ManagingCommands
     {
-        private bool isCreatingPlayer = true; // этап создания игрока
+        public static bool isCreatingPlayer = true; // этап создания игрока
 
         // проверка команд
         public void CheckingCommand(string command)
@@ -22,30 +22,59 @@ namespace Unknown_World_of_Magic_server
         {
             if(command == "SetClassPlayer")
             {
-                ManagingResponses responses = new ManagingResponses();
-                responses.SetServerResponse("SetNumberClassPlayer");
+                CommandSetClassPlayer();
             }
             else if(ManagingResponses.serverResponse == "SetNumberClassPlayer")
             {
-                CreatingPlayer creatingPlayer = new CreatingPlayer();
-                creatingPlayer.SetNumberClassPlayer(Convert.ToInt32(command));
-                ManagingResponses responses = new ManagingResponses();
-                responses.SetServerResponse("выбран класс игрока " + command);
+                ResponseSetNumberClassPlayer(command);
             }
             else if(command == "SetPlayerName")
             {
-                ManagingResponses responses = new ManagingResponses();
-                responses.SetServerResponse("SetPlayerName");
+                CommandSetPlayerName();
             }
             else if(ManagingResponses.serverResponse == "SetPlayerName")
             {
-                CreatingPlayer creatingPlayer = new CreatingPlayer();
-                creatingPlayer.SetPlayerName(command);
-                ManagingResponses responses = new ManagingResponses();
-                responses.SetServerResponse("Установлено имя игрока " + command);
-                Console.WriteLine("установлено имя игрока " + CreatingPlayer.namePlayer);
-                Console.WriteLine("установлен класс игрока " + creatingPlayer.GetNameClassPlayer());
+                ResponseSetPlayerName(command);
             }
         }
+
+        #region Commands & Responses
+
+        // команда SetClassPlayer
+        private void CommandSetClassPlayer()
+        {
+            ManagingResponses responses = new ManagingResponses();
+            responses.SetServerResponse("SetNumberClassPlayer");
+        }
+
+        // ответ SetNumberClassPlayer
+        private void ResponseSetNumberClassPlayer(string command)
+        {
+            CreatingPlayer creatingPlayer = new CreatingPlayer();
+            creatingPlayer.SetNumberClassPlayer(Convert.ToInt32(command));
+            ManagingResponses responses = new ManagingResponses();
+            responses.SetServerResponse("выбран класс игрока " + command);
+        }
+
+        // команда SetPlayerName
+        private void CommandSetPlayerName()
+        {
+            ManagingResponses responses = new ManagingResponses();
+            responses.SetServerResponse("SetPlayerName");
+        }
+
+        // ответ SetPlayerName
+        private void ResponseSetPlayerName(string command)
+        {
+            CreatingPlayer creatingPlayer = new CreatingPlayer();
+            creatingPlayer.SetPlayerName(command);
+            ManagingResponses responses = new ManagingResponses();
+            responses.SetServerResponse("Установлено имя игрока " + command);
+            Console.WriteLine("установлено имя игрока " + CreatingPlayer.namePlayer);
+            Console.WriteLine("установлен класс игрока " + creatingPlayer.GetNameClassPlayer());
+            isCreatingPlayer = false;
+        }
+
+        #endregion
     }
 }

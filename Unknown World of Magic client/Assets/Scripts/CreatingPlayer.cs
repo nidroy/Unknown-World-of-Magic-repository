@@ -48,6 +48,7 @@ public class CreatingPlayer : MonoBehaviour
         if (serverResponse == "SetPlayerName")
         {
             Debug.Log(server.SendingMessage(SetName(namePlayer)));
+            HideCreatingPlayerWindow();
         }
     }
 
@@ -59,6 +60,18 @@ public class CreatingPlayer : MonoBehaviour
             return defaultNamePlayer.text;
         }
         return namePlayer.text;
+    }
+
+    #endregion
+
+    #region HideWindow
+
+    public GameObject windowCreatingPlayer; // окно создания игрока
+
+    // скрыть окно создания игрока
+    private void HideCreatingPlayerWindow()
+    {
+        windowCreatingPlayer.SetActive(false);
     }
 
     #endregion
