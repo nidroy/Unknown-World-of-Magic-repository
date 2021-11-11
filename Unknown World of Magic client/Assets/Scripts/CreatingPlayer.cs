@@ -10,7 +10,7 @@ public class CreatingPlayer : MonoBehaviour
     public Text[] nameClassPlayer; // названия классов игрока
 
     // установить класс игрока
-    public void SetClassPlayer(int numberClassPlayer)
+    public void SetPlayerClass(int numberClassPlayer)
     {
         ConnectionServer server = new ConnectionServer();
         string serverResponse = ""; // ответ сервера
@@ -18,12 +18,13 @@ public class CreatingPlayer : MonoBehaviour
         if(serverResponse == "SetNumberClassPlayer")
         {
             Debug.Log(server.SendingMessage(numberClassPlayer.ToString()));
-            SetColourClassPlayer(numberClassPlayer);
+            PrintPlayerClass(numberClassPlayer);
+            SetColourPlayerClass(numberClassPlayer);
         }
     }
 
     // установить цвет названия класса игрока
-    private void SetColourClassPlayer(int numberClassPlayer)
+    private void SetColourPlayerClass(int numberClassPlayer)
     {
         for(int i = 0; i < nameClassPlayer.Length; i++)
         {
@@ -48,7 +49,8 @@ public class CreatingPlayer : MonoBehaviour
         if (serverResponse == "SetPlayerName")
         {
             Debug.Log(server.SendingMessage(SetName(namePlayer)));
-            HideCreatingPlayerWindow();
+            PrintPlayerName(SetName(namePlayer));
+            StartGame();
         }
     }
 
@@ -64,14 +66,44 @@ public class CreatingPlayer : MonoBehaviour
 
     #endregion
 
-    #region HideWindow
+    #region StartGame
 
-    public GameObject windowCreatingPlayer; // окно создания игрока
+    public Animator startGameAnim; // анимация начала игры
 
-    // скрыть окно создания игрока
-    private void HideCreatingPlayerWindow()
+    // начать игру
+    private void StartGame()
     {
-        windowCreatingPlayer.SetActive(false);
+        startGameAnim.SetBool("isStartGame", true);
+    }
+
+    #endregion
+
+    #region PrintPlayer
+
+    public Sprite[] inputClassPlayer; // изображения классов игрока
+    public Sprite[] inputActionPointsLine; // изображения линий очков действий
+
+    public Text outputNamePlayer; // окно вывода имени игрока
+    public Image outputClassPlayer; // окно вывода класса игрока
+    public Image outputActionPointsLine; // окно вывода линии очков действий
+
+    // вывести на экран имя игрока
+    private void PrintPlayerName(string namePlayer)
+    {
+        outputNamePlayer.text = namePlayer;
+    }
+
+    // вывести на экран изображение класса игрока
+    private void PrintPlayerClass(int numberClassPlayer)
+    {
+        outputClassPlayer.sprite = inputClassPlayer[numberClassPlayer];
+        PrintLineActionPoints(numberClassPlayer);
+    }
+
+    // вывести на экран изображение линии очков действий
+    private void PrintLineActionPoints(int numberActionPointsLine)
+    {
+        outputActionPointsLine.sprite = inputActionPointsLine[numberActionPointsLine];
     }
 
     #endregion

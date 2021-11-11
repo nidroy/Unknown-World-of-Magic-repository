@@ -18,15 +18,11 @@ namespace Unknown_World_of_Magic_server
         // получить название класса игрока
         public string GetNameClassPlayer()
         {
-            if(numberClassPlayer == 0)
-            {
-                return "Assassin";
-            }
-            if(numberClassPlayer == 1)
-            {
-                return "Mage";
-            }
-            return "";
+            List<string> nameClassPlayer = new List<string>();
+            nameClassPlayer.Add("Assassin");
+            nameClassPlayer.Add("Mage");
+            
+            return nameClassPlayer[numberClassPlayer];
         }
 
         // установить имя игрока
@@ -34,5 +30,6 @@ namespace Unknown_World_of_Magic_server
         {
             namePlayer = name;
         }
+
     }
 }
