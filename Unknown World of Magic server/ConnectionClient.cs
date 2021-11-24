@@ -45,8 +45,8 @@ namespace Unknown_World_of_Magic_server
                     Console.WriteLine(DateTime.Now.ToShortTimeString() + ": " + builder.ToString());
 
                     // проверка полученной команды
-                    ManagingCommands managingCommands = new ManagingCommands();
-                    managingCommands.CheckingCommand(builder.ToString());
+                    ManagingCommands commands = new ManagingCommands();
+                    commands.CheckingCommand(builder.ToString());
 
                     // отправляем ответ
                     string message = ManagingResponses.serverResponse;

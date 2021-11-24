@@ -6,13 +6,23 @@ namespace Unknown_World_of_Magic_server
 {
     public class CreatingPlayer
     {
-        public static int numberClassPlayer; // номер класса игрока
-        public static string namePlayer; // имя игрока
+
+        // установить начало создания игрока
+        public void SetStartCreatingPlayer()
+        {
+            ManagingCommands.isCreatingPlayer = true;
+        }
+
+        // установить конец создания игрока
+        public void SetFinishCreatingPlayer()
+        {
+            ManagingCommands.isCreatingPlayer = false;
+        }
 
         // установить номер класса игрока
         public void SetNumberClassPlayer(int number)
         {
-            numberClassPlayer = number;
+            Player.numberClassPlayer = number;
         }
 
         // получить название класса игрока
@@ -22,13 +32,13 @@ namespace Unknown_World_of_Magic_server
             nameClassPlayer.Add("Assassin");
             nameClassPlayer.Add("Mage");
             
-            return nameClassPlayer[numberClassPlayer];
+            return nameClassPlayer[Player.numberClassPlayer];
         }
 
         // установить имя игрока
         public void SetPlayerName(string name)
         {
-            namePlayer = name;
+            Player.namePlayer = name;
         }
 
     }

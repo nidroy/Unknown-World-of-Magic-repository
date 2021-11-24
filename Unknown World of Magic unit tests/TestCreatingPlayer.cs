@@ -10,7 +10,7 @@ namespace Unknown_World_of_Magic_server
             CreatingPlayer creatingPlayer = new CreatingPlayer();
             creatingPlayer.SetNumberClassPlayer(1);
 
-            Assert.AreEqual(CreatingPlayer.numberClassPlayer, 1);
+            Assert.AreEqual(Player.numberClassPlayer, 1);
         }
 
         [Test]
@@ -43,7 +43,28 @@ namespace Unknown_World_of_Magic_server
             CreatingPlayer creatingPlayer = new CreatingPlayer();
             creatingPlayer.SetPlayerName("Player name");
 
-            Assert.AreEqual(CreatingPlayer.namePlayer, "Player name");
+            Assert.AreEqual(Player.namePlayer, "Player name");
         }
+
+        [Test]
+        public void TestSetStartCreatingPlayer()
+        {
+            CreatingPlayer creatingPlayer = new CreatingPlayer();
+
+            creatingPlayer.SetStartCreatingPlayer();
+
+            Assert.AreEqual(ManagingCommands.isCreatingPlayer, true);
+        }
+
+        [Test]
+        public void TestSetFinishCreatingPlayer()
+        {
+            CreatingPlayer creatingPlayer = new CreatingPlayer();
+
+            creatingPlayer.SetFinishCreatingPlayer();
+
+            Assert.AreEqual(ManagingCommands.isCreatingPlayer, false);
+        }
+
     }
 }

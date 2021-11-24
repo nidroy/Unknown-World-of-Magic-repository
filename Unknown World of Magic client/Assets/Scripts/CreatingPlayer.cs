@@ -13,9 +13,7 @@ public class CreatingPlayer : MonoBehaviour
     public void SetPlayerClass(int numberClassPlayer)
     {
         ConnectionServer server = new ConnectionServer();
-        string serverResponse = ""; // ответ сервера
-        serverResponse = server.SendingMessage("SetClassPlayer");
-        if(serverResponse == "SetNumberClassPlayer")
+        if(server.SendingMessage("SetClassPlayer") == "SetNumberClassPlayer")
         {
             Debug.Log(server.SendingMessage(numberClassPlayer.ToString()));
             PrintPlayerClass(numberClassPlayer);
@@ -41,16 +39,13 @@ public class CreatingPlayer : MonoBehaviour
     public Text defaultNamePlayer; // стандартное имя игрока
 
     // установить имя игрока
-    public void SetPlayerName(Text namePlayer)
+    private void SetPlayerName(Text namePlayer)
     {
         ConnectionServer server = new ConnectionServer();
-        string serverResponse = ""; // ответ сервера
-        serverResponse = server.SendingMessage("SetPlayerName");
-        if (serverResponse == "SetPlayerName")
+        if (server.SendingMessage("SetPlayerName") == "SetPlayerName")
         {
             Debug.Log(server.SendingMessage(SetName(namePlayer)));
             PrintPlayerName(SetName(namePlayer));
-            StartGame();
         }
     }
 
@@ -71,8 +66,14 @@ public class CreatingPlayer : MonoBehaviour
     public Animator startGameAnim; // анимация начала игры
 
     // начать игру
-    private void StartGame()
+    public void StartGame(Text namePlayer)
     {
+        SetPlayerName(namePlayer);
+        SetInitialCharacteristics();
+        SetInitialAttributesPlayer();
+        SetInitialLocationInformation();
+        SetInitialAttributesNPC();
+        SetFinishCreatingPlayer();
         startGameAnim.SetBool("isStartGame", true);
     }
 
@@ -104,6 +105,89 @@ public class CreatingPlayer : MonoBehaviour
     private void PrintLineActionPoints(int numberActionPointsLine)
     {
         outputActionPointsLine.sprite = inputActionPointsLine[numberActionPointsLine];
+    }
+
+    #endregion
+
+    #region PlayerAttributes
+
+    public Player player; // игрок
+
+    // установить начальные атрибуты игрока
+    private void SetInitialAttributesPlayer()
+    {
+        player.SetHealthPoints(100);
+        player.SetActionPoints(100);
+        player.SetSkillPoints(0);
+        player.SetExperiencePoints(0);
+        player.SetPlayerLevel(1);
+        player.SetPlayerGold(0);
+    }
+
+    #endregion
+
+    #region Characteristics
+
+    public Characteristics characteristics; // характеристики
+
+    // установить начальные характеристики
+    private void SetInitialCharacteristics()
+    {
+        characteristics.ShowCharacteristics();
+        characteristics.SetStrength(10);
+        characteristics.SetAgility(10);
+        characteristics.SetIntelligence(10);
+        characteristics.HideCharacteristics();
+    }
+
+    #endregion
+
+    #region LocationInformation
+
+    public Locations locations; // локации
+
+    // установить начальную информацию о локации
+    private void SetInitialLocationInformation()
+    {
+        locations.GetNameLocation();
+        locations.GetTextLocation();
+    }
+
+    #endregion
+
+    #region StartCreatingPlayer
+    
+    // установить начало создания игрока
+    public void SetStartCreatingPlayer()
+    {
+        ConnectionServer server = new ConnectionServer();
+        Debug.Log(server.SendingMessage("SetStartCreatingPlayer"));
+    }
+
+    #endregion
+
+    #region FinishCreatingPlayer
+
+    // установить конец создания игрока
+    private void SetFinishCreatingPlayer()
+    {
+        ConnectionServer server = new ConnectionServer();
+        Debug.Log(server.SendingMessage("SetFinishCreatingPlayer"));
+    }
+
+    #endregion
+
+    #region NPCAttributes
+
+    public NPC npc;
+
+    // установить начальные атрибуты NPC
+    private void SetInitialAttributesNPC()
+    {
+        npc.PrintNPCName();
+        npc.SetHealthPoints(100);
+        npc.PrintNPCLevel();
+        npc.SetNPCClass();
     }
 
     #endregion
