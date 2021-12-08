@@ -25,6 +25,7 @@ public class FightWindow : MonoBehaviour
         player.SetAbilityFight(true);
         enemy.SetAbilityFight(true);
         timeFight = Random.Range(2, 10);
+        player.SetAbilityRestoring(false);
     }
 
     // закончить сражение
@@ -37,7 +38,7 @@ public class FightWindow : MonoBehaviour
         buttonFight.SetActive(true);
         player.SetAbilityFight(false);
         enemy.SetAbilityFight(false);
-        player.StartRestoring();
+        player.SetAbilityRestoring(true);
     }
 
     private void Update()

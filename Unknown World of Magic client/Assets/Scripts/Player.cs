@@ -63,10 +63,10 @@ public class Player : Character
         playerGold.text = gold.ToString();
     }
 
-    // начать восстановление
-    public void StartRestoring()
+    // установить возможность восстановления
+    public void SetAbilityRestoring(bool isPlayerRestoring)
     {
-        isRestoring = true;
+        isRestoring = isPlayerRestoring;
     }
 
     #endregion

@@ -17,10 +17,4 @@ public class StartMenu : MonoBehaviour
     {
 
     }
-
-    // выйти из игры
-    public void ExitGame()
-    {
-        Application.Quit();
-    }
 }
