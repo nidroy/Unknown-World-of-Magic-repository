@@ -9,7 +9,7 @@ public class Enemy : Character
     public Bandit bandit; // бандит
     public Leshii leshii; // леший
     public Player player; // игрок
-    public Fight fight; // сражение
+    public FightWindow fight; // сражение
 
     // получить атрибуты врага
     public void GetEnemyAttributes(string[] attribute)

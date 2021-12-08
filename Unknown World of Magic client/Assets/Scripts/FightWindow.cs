@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Fight : MonoBehaviour
+public class FightWindow : MonoBehaviour
 {
     public GameObject buttonAttack; // кнопка атаки
     public GameObject buttonFight; // кнопка сражения
