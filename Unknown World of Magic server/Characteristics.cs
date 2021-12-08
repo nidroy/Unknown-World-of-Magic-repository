@@ -6,38 +6,41 @@ namespace Unknown_World_of_Magic_server
 {
     public class Characteristics
     {
-        public static int strength; // сила
-        public static int agility; // ловкость
-        public static int intelligence; // интеллект
+        public static int strength { get; set; } // сила
+        public static int agility { get; set; } // ловкость
+        public static int intelligence { get; set; } // интеллект
 
-        // установить очки силы
-        public void SetStrength(int numberStrength)
+        // увеличить силу
+        public void IncreaseStrength()
         {
-            strength = numberStrength;
+            if (Player.playerSkillPoints > 0)
+            {
+                strength++;
+                Player.playerHealthPoints = strength * 10;
+                Player.playerSkillPoints--;
+            }
         }
 
-        // установить очки ловкости
-        public void SetAgility(int numberAgility)
+        // увеличить ловкость
+        public void IncreaseAgility()
         {
-            agility = numberAgility;
+            if (Player.playerSkillPoints > 0)
+            {
+                agility++;
+                Player.playerDamage = agility;
+                Player.playerSkillPoints--;
+            }
         }
 
-        // установить очки интеллекта
-        public void SetIntelligence(int numberIntelligence)
+        // увеличить интеллект
+        public void IncreaseIntelligence()
         {
-            intelligence = numberIntelligence;
-        }
-
-        // показать характеристики
-        public void ShowCharacteristics()
-        {
-            ManagingCommands.isCharacteristics = true;
-        }
-
-        // скрыть характеристики
-        public void HideCharacteristics()
-        {
-            ManagingCommands.isCharacteristics = false;
+            if (Player.playerSkillPoints > 0)
+            {
+                intelligence++;
+                Player.playerActionPoints = intelligence * 10;
+                Player.playerSkillPoints--;
+            }
         }
     }
 }

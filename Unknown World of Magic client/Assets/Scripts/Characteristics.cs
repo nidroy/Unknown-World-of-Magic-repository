@@ -9,100 +9,69 @@ public class Characteristics : MonoBehaviour
     public Text strength; // сила
     public Text agility; // ловкость
     public Text intelligence; // интеллект
-    public Animator characteristicsAnim; // анимации окна характеристик
+    public Animator characteristicsAnim; // анимации характеристик
     public Player player; // игрок
 
-    // показать характеристики
-    public void ShowCharacteristics()
+    #region SetCharacteristics
+
+    // установить силу игрока
+    public void SetStrength(int playerStrength)
     {
-        ConnectionServer server = new ConnectionServer();
-        Debug.Log(server.SendingMessage("ShowCharacteristics"));
+        strength.text = playerStrength.ToString();
     }
 
-    // установить силу
-    public void SetStrength(int numberStrength)
+    // установить ловкость игрока
+    public void SetAgility(int playerAgility)
     {
-        ConnectionServer server = new ConnectionServer();
-        if(server.SendingMessage("SetStrength") == "SetNumberStrength")
-        {
-            Debug.Log(server.SendingMessage(numberStrength.ToString()));
-            strength.text = numberStrength.ToString();
-        }
+        agility.text = playerAgility.ToString();
     }
 
-    // установиь ловкость
-    public void SetAgility(int numberAgility)
+    // установить интеллект игрока
+    public void SetIntelligence(int playerIntelligence)
     {
-        ConnectionServer server = new ConnectionServer();
-        if(server.SendingMessage("SetAgility") == "SetNumberAgility")
-        {
-            Debug.Log(server.SendingMessage(numberAgility.ToString()));
-            agility.text = numberAgility.ToString();
-        }
+        intelligence.text = playerIntelligence.ToString();
     }
 
-    // установить интеллект
-    public void SetIntelligence(int numberIntelligence)
+    #endregion
+
+    // показать, скрыть характеристики
+    public void ShowHideCharacteristics()
     {
-        ConnectionServer server = new ConnectionServer();
-        if(server.SendingMessage("SetIntelligence") == "SetNumberIntelligence")
-        {
-            Debug.Log(server.SendingMessage(numberIntelligence.ToString()));
-            intelligence.text = numberIntelligence.ToString();
-        }
+        characteristicsAnim.SetBool("isShow", !characteristicsAnim.GetBool("isShow"));  
     }
 
-    // скрыть характеристики
-    public void HideCharacteristics()
+    // увеличить силу
+    public void IncreaseStrength()
     {
-        ConnectionServer server = new ConnectionServer();
-        Debug.Log(server.SendingMessage("HideCharacteristics"));
+        Server server = new Server(); // сервер
+
+        string[] attribute = server.SendingMessage("IncreaseStrength").Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+
+        SetStrength(int.Parse(attribute[0]));
+        player.SetMaximumCharacterHealthPoints(int.Parse(attribute[1]));
+        player.SetPlayerSkillPoints(int.Parse(attribute[2]));
     }
 
-    // установить видимость характеристик
-    public void SetVisibilityCharacteristics()
+    // увеличить ловкость
+    public void IncreaseAgility()
     {
-        if (characteristicsAnim.GetBool("isShow"))
-        {
-            characteristicsAnim.SetBool("isShow", false);
-            HideCharacteristics();
-        }
-        else
-        {
-            characteristicsAnim.SetBool("isShow", true);
-            ShowCharacteristics();
-        }
+        Server server = new Server(); // сервер
+
+        string[] attribute = server.SendingMessage("IncreaseAgility").Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+
+        SetAgility(int.Parse(attribute[0]));
+        player.SetPlayerSkillPoints(int.Parse(attribute[1]));
     }
 
-    // повысить силу
-    public void UpStrength()
+    // увеличить интеллект
+    public void IncreaseIntelligence()
     {
-        if (Convert.ToInt32(player.skillPoints.text) > 0)
-        {
-            SetStrength(Convert.ToInt32(strength.text) + 1);
-            player.SetSkillPoints(Convert.ToInt32(player.skillPoints.text) - 1);
-            player.SetHealthPoints(Convert.ToInt32(strength.text) * 10);
-        }
-    }
+        Server server = new Server(); // сервер
 
-    // повысить ловкость
-    public void UpAgility()
-    {
-        if (Convert.ToInt32(player.skillPoints.text) > 0)
-        {
-            SetAgility(Convert.ToInt32(agility.text) + 1);
-            player.SetSkillPoints(Convert.ToInt32(player.skillPoints.text) - 1);
-        }
-    }
+        string[] attribute = server.SendingMessage("IncreaseIntelligence").Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
 
-    // повысить интеллект
-    public void UpIntelligence()
-    {
-        if (Convert.ToInt32(player.skillPoints.text) > 0)
-        {
-            SetIntelligence(Convert.ToInt32(intelligence.text) + 1);
-            player.SetSkillPoints(Convert.ToInt32(player.skillPoints.text) - 1);
-            player.SetActionPoints(Convert.ToInt32(intelligence.text) * 10);
-        }
+        SetIntelligence(int.Parse(attribute[0]));
+        player.SetMaximumPlayerActionPoints(int.Parse(attribute[1]));
+        player.SetPlayerSkillPoints(int.Parse(attribute[2]));
     }
 }

@@ -4,174 +4,162 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-    #region SetAttributes
-
+    public string playerClass; // класс игрока
+    public Image playerActionPoints; // очки действий игрока
+    public int maximumPlayerActionPoints; // максимальные очки действий игрока
+    public Image playerExperiencePoints; // очки опыта игрока
+    public int maximumPlayerExperiencePoints; // максимальные очки опыта игрока
+    public Text playerSkillPoints; // очки навыков игрока
+    public Text playerGold; // золото игрока
+    public Enemy enemy; // враг
     public Characteristics characteristics; // характеристики
+    public bool isRestoring; // восстановление очков здоровья
+    private float secondsRestoringHealthPoints = 0; // секунды восстанавления очка здоровья
+    private float secondsRestoringActionPoints = 0; // секудны восстановления очка действия
 
-    // установить очки здоровья
-    public void SetHealthPoints(int HP)
+    #region SetPlayerAttributes
+
+    // установить класс игрока
+    public void SetPlayerClass(string characterClass)
     {
-        ConnectionServer server = new ConnectionServer();
-        if(server.SendingMessage("SetHealthPoints") == "SetNumberHealthPoints")
-        {
-            Debug.Log(server.SendingMessage(HP.ToString()));
-            PrintHealthPoints(HP, Convert.ToInt32(characteristics.strength.text) * 10);
-        }
+        playerClass = characterClass;
     }
 
-    // установить очки действий
-    public void SetActionPoints(int AP)
+    // установить очки действий игрока
+    public void SetPlayerActionPoints(int actionPoints)
     {
-        ConnectionServer server = new ConnectionServer();
-        if(server.SendingMessage("SetActionPoints") == "SetNumberActionPoints")
-        {
-            Debug.Log(server.SendingMessage(AP.ToString()));
-            PrintActionPoints(AP, Convert.ToInt32(characteristics.intelligence.text) * 10);
-        }
+        playerActionPoints.fillAmount = (float)actionPoints / (float)maximumPlayerActionPoints;
     }
 
-    // установить очки навыков
-    public void SetSkillPoints(int SP)
+    // установить максимальные очки действий игрока
+    public void SetMaximumPlayerActionPoints(int maximumActionPoints)
     {
-        ConnectionServer server = new ConnectionServer();
-        if (server.SendingMessage("SetSkillPoints") == "SetNumberSkillPoints")
-        {
-            Debug.Log(server.SendingMessage(SP.ToString()));
-        }
-        PrintSkillPoints(SP);
+        maximumPlayerActionPoints = maximumActionPoints;
     }
 
-    // установить очки опыта
-    public void SetExperiencePoints(int XP)
+    // установить очки опыта игрока
+    public void SetPlayerExperiencePoints(int experiencePoints)
     {
-        ConnectionServer server = new ConnectionServer();
-        if (server.SendingMessage("SetExperiencePoints") == "SetNumberExperiencePoints")
-        {
-            Debug.Log(server.SendingMessage(XP.ToString()));
-        }
-        PrintExperiencePoints(XP, 100);
+        playerExperiencePoints.fillAmount = (float)experiencePoints / (float)maximumPlayerExperiencePoints;
     }
 
-    // установить уровень игрока
-    public void SetPlayerLevel(int level)
+    // установить максимальные очки опыта игрока
+    public void SetMaximumPlayerExperiencePoints(int maximumExperiencePoints)
     {
-        ConnectionServer server = new ConnectionServer();
-        if(server.SendingMessage("SetPlayerLevel") == "SetLevel")
-        {
-            Debug.Log(server.SendingMessage(level.ToString()));
-        }
-        PrintPlayerLevel(level);
+        maximumPlayerExperiencePoints = maximumExperiencePoints;
+    }
+
+    // установить очки навыков игрока
+    public void SetPlayerSkillPoints(int skillPoints)
+    {
+        playerSkillPoints.text = skillPoints.ToString();
     }
 
     // установить золото игрока
     public void SetPlayerGold(int gold)
     {
-        ConnectionServer server = new ConnectionServer();
-        if (server.SendingMessage("SetPlayerGold") == "SetNumberGold")
-        {
-            Debug.Log(server.SendingMessage(gold.ToString()));
-        }
-        PrintPlayerGold(gold);
-    }
-
-    #endregion
-
-    #region PrintAttributes
-
-    public Image healthPoints; // окно вывода очков здоровья
-    public Image actionPoints; // окно вывода очков действий
-    public Text skillPoints; // окно вывода очков навыков
-    public Image experiencePoints; // окно вывода очков опыта
-    public Text playerLevel; // окно вывода уровня игрока
-    public Text playerGold; // окно вывода золота игрока
-
-    // вывести на экран очки здоровья
-    private void PrintHealthPoints(int HP, int maxHP)
-    {
-        healthPoints.fillAmount = (float)HP / (float)maxHP;
-    }
-
-    // вывести на экран очки действий
-    private void PrintActionPoints(int AP, int maxAP)
-    {
-        actionPoints.fillAmount = (float)AP / (float)maxAP;
-    }
-
-    // вывести на экран очки навыков
-    private void PrintSkillPoints(int SP)
-    {
-        skillPoints.text = SP.ToString();
-    }
-
-    // вывести на экран очки опыта
-    private void PrintExperiencePoints(int XP, int maxXP)
-    {
-        experiencePoints.fillAmount = (float)XP / (float)maxXP;
-    }
-
-    // вывести на экран уровень персонажа
-    private void PrintPlayerLevel(int level)
-    {
-        playerLevel.text = level.ToString();
-    }
-
-    // вывести на экран золото игрока
-    private void PrintPlayerGold(int gold)
-    {
         playerGold.text = gold.ToString();
     }
 
+    // начать восстановление
+    public void StartRestoring()
+    {
+        isRestoring = true;
+    }
+
     #endregion
-
-    #region Fight
-
-    public static bool isFight = false; // возможность атаковать 
-    public NPC npc; // NPC
 
     // атака игрока
-    public void AttackPlayer()
+    public override void Attack()
     {
-        if (isFight && (int)(actionPoints.fillAmount * 100) >= 10)
+        if(isFight)
         {
-            if (UnityEngine.Random.Range(0, 100) < 90)
-            {
-                int damage = 0;
-                int newHealthPoints = 0;
-                ConnectionServer server = new ConnectionServer();
-                if (server.SendingMessage("SetPlayerDamage") == "SetNumberPlayerDamage")
-                {
-                    damage = Convert.ToInt32(server.SendingMessage("5"));
-                }
-                if (server.SendingMessage("AttackPlayer") == "SetDamagePlayerAttack")
-                {
-                    newHealthPoints = Convert.ToInt32(server.SendingMessage(damage.ToString()));
-                }
-                npc.SetHealthPoints(newHealthPoints);
-            }
+            Server server = new Server(); // сервер
 
-            SetActionPoints((int)(actionPoints.fillAmount * 100) - 10);
+            string[] attribute = server.SendingMessage("PlayerAttack").Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+            enemy.SetCharacterHealthPoints(int.Parse(attribute[0]));
+            SetPlayerActionPoints(int.Parse(attribute[1]));
+
             isFight = false;
-        }       
+        }
     }
 
-    // блок игрока
-    public void BlockPlayer()
+    // смерть игрока
+    public override void Death()
     {
-        if(isFight && (int)(actionPoints.fillAmount * 100) >= 15)
+        if (characterHealthPoints.fillAmount == 0)
         {
-            Characteristics characteristics = new Characteristics();
-            if (UnityEngine.Random.Range(0, 100) < 40 + Convert.ToInt32(characteristics.agility.text))
-            {
-                NPC.isFight = false;
-                Debug.Log("атака врага заблокированна");
-            }
 
-            SetActionPoints((int)(actionPoints.fillAmount * 100) - 15);
-            isFight = false;
-        }    
+        }
     }
 
-    #endregion
+    //увеличить уровень игрока
+    public void IncreaseLevel()
+    {
+        if(playerExperiencePoints.fillAmount == 1)
+        {
+            Server server = new Server(); // сервер
+
+            string[] attribute = server.SendingMessage("IncreaseLevel").Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+            SetCharacterLevel(int.Parse(attribute[0]));
+            SetPlayerSkillPoints(int.Parse(attribute[1]));
+            characteristics.SetStrength(int.Parse(attribute[2]));
+            characteristics.SetAgility(int.Parse(attribute[3]));
+            characteristics.SetIntelligence(int.Parse(attribute[4]));
+            SetMaximumPlayerExperiencePoints(maximumPlayerExperiencePoints * 2);
+            SetPlayerExperiencePoints(int.Parse(server.SendingMessage("ResetExperiencePoints")));
+        }
+    }
+
+    // восстановление очков здоровья игрока
+    public void RestoringHealthPoints()
+    {
+        if(isRestoring)
+        {
+            if (characterHealthPoints.fillAmount == 1)
+            {
+                isRestoring = false;
+                secondsRestoringHealthPoints = 0;
+            }
+            else
+            {
+                secondsRestoringHealthPoints += Time.deltaTime;
+                if (secondsRestoringHealthPoints >= 0.5)
+                {
+                    Server server = new Server(); // сервер
+                    SetCharacterHealthPoints(int.Parse(server.SendingMessage("RestoringHealthPoints")));
+                    secondsRestoringHealthPoints = 0;
+                }
+            }
+        }
+    }
+
+    // восстановление очков действия игрока
+    public void RestoringActionPoints()
+    {
+        if (playerActionPoints.fillAmount == 1.5)
+        {
+            secondsRestoringActionPoints = 0;
+        }
+        else
+        {
+            secondsRestoringActionPoints += Time.deltaTime;
+            if (secondsRestoringActionPoints >= 1)
+            {
+                Server server = new Server(); // сервер
+                SetPlayerActionPoints(int.Parse(server.SendingMessage("RestoringActionPoints")));
+                secondsRestoringActionPoints = 0;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        Death();
+        IncreaseLevel();
+        RestoringHealthPoints();
+        RestoringActionPoints();
+    }
 }

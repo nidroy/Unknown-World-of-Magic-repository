@@ -5,101 +5,50 @@ using UnityEngine.UI;
 
 public class Fight : MonoBehaviour
 {
-    public GameObject[] fightControlButton; // кнопки управления сражением
-
-    // установить начало сражения
-    public void SetStartFight()
-    {
-        ConnectionServer server = new ConnectionServer();
-        Debug.Log(server.SendingMessage("SetStartFight"));
-        MakeFightControlButtonInvisible(0);
-        MakeFightControlButtonVisible(1);
-        MakeFightControlButtonVisible(2);
-        SetTimerVisibility(true);
-        SetTimerStart();
-    }
-
-    // установить конец сражения
-    public void SetFinishFight()
-    {
-        ConnectionServer server = new ConnectionServer();
-        Debug.Log(server.SendingMessage("SetFinishFight"));
-        MakeFightControlButtonVisible(0);
-        MakeFightControlButtonInvisible(1);
-        MakeFightControlButtonInvisible(2);
-        SetTimerVisibility(false);
-        NPC.isFight = false;
-    }
-
-    #region VisibilityFightControlButton
-
-    // сделать кнопку управления сражением видимой
-    private void MakeFightControlButtonVisible(int buttonNumber)
-    {
-        fightControlButton[buttonNumber].SetActive(true);
-    }
-
-    // сделать кнопку управления сражением невидимой
-    private void MakeFightControlButtonInvisible(int buttonNumber)
-    {
-        fightControlButton[buttonNumber].SetActive(false);
-    }
-
-    #endregion
-
-    #region Timer
-
-    public GameObject timer; // таймер
+    public GameObject buttonAttack; // кнопка атаки
+    public GameObject buttonFight; // кнопка сражения
+    public GameObject clock; // часы
+    public Image timeLine; // линия время
     public Text time; // время
-    public Image timeLine; // линия времени
-    private bool isTimeReport = false; // отсчет времени пошёл
-    private float seconds; // секунды
-    private int timeFight; // время атаки
-    public NPC npc; // NPC
+    public Player player; // игрок
+    public Enemy enemy; // враг
+    public int timeFight; // время сражения
 
-    // установить видимость таймера
-    private void SetTimerVisibility(bool isVisible)
-    {
-        timer.SetActive(isVisible);
-        isTimeReport = isVisible;
-    }
-
-    // установить запуск таймера
-    private void SetTimerStart()
+    // начать сражение
+    public void StartFight()
     {
         timeLine.fillAmount = 1;
-        seconds = 10;
-        time.text = ((int)seconds).ToString();
-        timeFight = Random.Range(0, 10);
-        NPC.isFight = true;
-        Player.isFight = true;
+        time.text = 10.ToString();
+        clock.SetActive(true);
+        buttonAttack.SetActive(true);
+        buttonFight.SetActive(false);
+        player.SetAbilityFight(true);
+        enemy.SetAbilityFight(true);
+        timeFight = Random.Range(2, 10);
     }
 
-    // установить отсчет времени
+    // закончить сражение
+    public void FinishFight()
+    {
+        clock.SetActive(false);
+        timeLine.fillAmount = 1;
+        time.text = 10.ToString();
+        buttonAttack.SetActive(false);
+        buttonFight.SetActive(true);
+        player.SetAbilityFight(false);
+        enemy.SetAbilityFight(false);
+        player.StartRestoring();
+    }
+
     private void Update()
     {
-        if(isTimeReport)
+        if(time.text == timeFight.ToString())
         {
-            seconds -= Time.deltaTime;
-            time.text = ((int)seconds + 1).ToString();
-            timeLine.fillAmount = seconds / 10;
-            if((int)seconds == timeFight)
-            {
-                if (Random.Range(0, 100) < 30)
-                {
-                    npc.BlockNPC();
-                }
-                else
-                {
-                    npc.AttackNPC();
-                }
-            }
-            if(timeLine.fillAmount == 0)
-            {
-                SetTimerStart();
-            }
+            enemy.Attack();
+        }
+        if(timeLine.fillAmount == 0)
+        {
+            StartFight();
         }
     }
-
-    #endregion
 }

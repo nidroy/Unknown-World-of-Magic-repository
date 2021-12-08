@@ -6,57 +6,95 @@ namespace Unknown_World_of_Magic_server
 {
     public class Player
     {
-        public static string namePlayer; // имя игрока
-        public static int numberClassPlayer; // номер класса игрока
-        public static int healthPoints; // очки здоровья
-        public static int actionPoints; // очки действий
-        public static int skillPoints; // очки навыков
-        public static int experiencePoints; // очки опыта
-        public static int playerLevel; // уровень игрока
-        public static int playerGold; // золото игрока
-        public static int playerDamage; // урон игрока
+        public static string playerName { get; set; } // имя игрока
+        public static string playerClass { get; set; } // класс игрока
+        public static int playerHealthPoints { get; set; } // очки здоровья игрока
+        public static int playerActionPoints { get; set; } // очки действий игрока
+        public static int playerExperiencePoints { get; set; } // очки опыта игрока
+        public static int playerSkillPoints { get; set; } // очки навыков игрока
+        public static int playerLevel { get; set; } // уровень игрока
+        public static int playerGold { get; set; } // золото игрока
+        public static int playerDamage { get; set; } // урон игрока
+        public static int playerMiss { get; set; } // промах игрока
 
-        // установить очки здоровья
-        public void SetHealthPoints(int HP)
+        // атака
+        public void Attack()
         {
-            healthPoints = HP;
+            if (playerActionPoints >= playerDamage)
+            {
+                Random random = new Random();
+                if (random.Next(0, 100) < 100 - playerMiss)
+                {
+                    Enemy.enemyHealthPoints -= random.Next(playerDamage, playerDamage + random.Next(10, 21));
+                }
+                playerActionPoints -= playerDamage;
+            }
         }
 
-        // установить очки действий
-        public void SetActionPoints(int AP)
+        // восстановление очков здоровья
+        public void RestoringHealthPoints()
         {
-            actionPoints = AP;
+            if (playerHealthPoints < Characteristics.strength * 10)
+            {
+                playerHealthPoints++;
+            }
         }
 
-        // установить очки навыков
-        public void SetSkillPoints(int SP)
+        // восстановление очков действий
+        public void RestoringActionPoints()
         {
-            skillPoints = SP;
+            if (playerActionPoints < Characteristics.intelligence * 10)
+            {
+                playerActionPoints++;
+            }
         }
 
-        // установить очки опыта
-        public void SetExperiencePoints(int XP)
+        // увеличить очки опыта
+        public void IncreaseExperiencePoints()
         {
-            experiencePoints = XP;
+            playerExperiencePoints += Enemy.enemyExperiencePoints;
         }
 
-        // установить уровень игрока
-        public void SetPlayerLevel(int level)
+        // обнулить очки опыта
+        public void ResetExperiencePoints()
         {
-            playerLevel = level;
+            playerExperiencePoints = 0;
         }
 
-        // установить золото игрока
-        public void SetPlayerGold(int gold)
+        // увеличить уровень
+        public void IncreaseLevel()
         {
-            playerGold = gold;
+            Characteristics characteristics = new Characteristics(); // характеристики
+            DeveloperMainCharacteristic developer = new DeveloperMainCharacteristic(
+                new CommandIncreaseStrengthWarrior(characteristics),
+                new CommandIncreaseAgilityAssassin(characteristics),
+                new CommandIncreaseIntelligenceWizard(characteristics)
+                ); // разработчик
+
+            playerLevel++;
+            for (int i = 0; i < 3; i++)
+                IncreaseSkillPoints();
+
+            #region выполнение команд
+
+            developer.ExecutingIncreaseStrengthWarrior();
+            developer.ExecutingIncreaseAgilityAssassin();
+            developer.ExecutingIncreaseIntelligenceWizard();
+
+            #endregion
         }
 
-        // установить урон игрока
-        public void SetPlayerDamage(int damage)
+        // увеличить очки навыков
+        public void IncreaseSkillPoints()
         {
-            Random random = new Random();
-            playerDamage = random.Next(damage, 11 + damage);
+            playerSkillPoints++;
         }
+
+        // увеличить золото
+        public void IncreaseGold()
+        {
+            playerGold += Enemy.enemyGold;
+        }
+
     }
 }

@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class StartMenu : MonoBehaviour
 {
-    public Animator startGameAnim; // анимация начала игры
+    public Animator gameAnim; // анимации игры
 
     // начать новую игру
     public void StartNewGame()
     {
-        ConnectionServer server = new ConnectionServer();
-        Debug.Log(server.SendingMessage("SetStartCreatingPlayer"));
-        startGameAnim.SetBool("isCreatingPlayer", true);
+        gameAnim.SetBool("isShowCreatingPlayer", true);
     }
 
     // продолжить игру
     public void ContinueGame()
     {
-        startGameAnim.SetBool("isContinue", true);
+
     }
 
     // выйти из игры
