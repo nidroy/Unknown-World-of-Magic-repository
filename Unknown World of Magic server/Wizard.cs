@@ -4,24 +4,28 @@ using System.Text;
 
 namespace Unknown_World_of_Magic_server
 {
-    public class Wizard : IGetAttributes
+    public class Wizard : Player
     {
         // получить атрибуты мага
-        public void GetCharacterAttributes()
+        public static string GetWizardAttributes()
         {
-            Player.playerClass = "Wizard";
-            Player.playerHealthPoints = 80;
-            Player.playerActionPoints = 120;
-            Player.playerExperiencePoints = 0;
-            Player.playerSkillPoints = 0;
-            Player.playerLevel = 0;
-            Player.playerGold = 0;
-            Player.playerDamage = 15;
-            Player.playerMiss = 5;
+            if (Client.command[0] == "GetWizardAttributes")
+            {
+                playerClass = "Wizard";
+                playerHealthPoints = 80;
+                playerActionPoints = 120;
+                playerExperiencePoints = 0;
+                playerSkillPoints = 0;
+                playerLevel = 0;
+                playerGold = 0;
+                playerDamage = 15;
+                playerMiss = 5;
 
-            Characteristics.strength = 8;
-            Characteristics.agility = 15;
-            Characteristics.intelligence = 12;
+                Characteristics.strength = 8;
+                Characteristics.agility = 15;
+                Characteristics.intelligence = 12;
+            }
+            return playerClass + "_" + playerHealthPoints.ToString() + "_" + playerActionPoints.ToString() + "_" + playerExperiencePoints.ToString() + "_" + playerSkillPoints.ToString() + "_" + playerLevel.ToString() + "_" + playerGold.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
         }
     }
 }

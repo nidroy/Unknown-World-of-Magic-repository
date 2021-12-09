@@ -15,13 +15,17 @@ namespace Unknown_World_of_Magic_server
         public static int enemyMiss { get; set; } // промах врага
 
         // атака
-        public void Attack()
+        public string Attack()
         {
-            Random random = new Random();
-            if (random.Next(0, 100) < 100 - enemyMiss)
+            if (Client.command[0] == "EnemyAttack")
             {
-                Player.playerHealthPoints -= random.Next(enemyDamage, enemyDamage + random.Next(5, 16));
+                Random random = new Random();
+                if (random.Next(0, 100) < 100 - enemyMiss)
+                {
+                    Player.playerHealthPoints -= random.Next(enemyDamage, enemyDamage + random.Next(5, 16));
+                }
             }
+            return Player.playerHealthPoints.ToString();
         }
     }
 }

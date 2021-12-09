@@ -7,6 +7,6 @@ namespace Unknown_World_of_Magic_server
     public interface ICommand
     {
         // выполнение команды
-        public void Executing();
+        public void Execute();
     }
 }

@@ -4,21 +4,22 @@ using System.Text;
 
 namespace Unknown_World_of_Magic_server
 {
-    public class Leshii : IGetAttributes
+    public class Leshii : Enemy
     {
         // получить атрибуты лешего
-        public void GetCharacterAttributes()
+        public static string GetLeshiiAttributes()
         {
-            if (Location.locationNumber == 1)
+            if (Location.locationNumber == 1 && Client.command[0] == "GetLeshiiAttributes")
             {
-                Enemy.enemyClass = "Leshii";
-                Enemy.enemyHealthPoints = 200;
-                Enemy.enemyExperiencePoints = 50;
-                Enemy.enemyLevel = 10;
-                Enemy.enemyGold = 100;
-                Enemy.enemyDamage = 12;
-                Enemy.enemyMiss = 10;
+                enemyClass = "Leshii";
+                enemyHealthPoints = 200;
+                enemyExperiencePoints = 50;
+                enemyLevel = 10;
+                enemyGold = 100;
+                enemyDamage = 12;
+                enemyMiss = 10;
             }
+            return enemyClass + "_" + enemyHealthPoints.ToString() + "_" + enemyLevel.ToString();
         }
     }
 }

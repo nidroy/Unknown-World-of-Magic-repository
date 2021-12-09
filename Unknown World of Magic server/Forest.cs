@@ -13,6 +13,7 @@ namespace Unknown_World_of_Magic_server
             {
                 locationName = "Forest";
                 locationDescription = "Густой и тёмный лес, из кустов которого доносятся звериные вопли. Эта чаща принадлежит Лешим. Они следят за порядком в лесу и не любят чужаков из города.";
+                Client.command[0] = "GetLeshiiAttributes";
             }
         }
     }

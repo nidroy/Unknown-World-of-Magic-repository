@@ -8,8 +8,7 @@ namespace Unknown_World_of_Magic_server
     public class Client
     {
         static int port = 8005; // порт для приема входящих запросов
-        public static string response { get; set; } // ответ
-        public static string command { get; set; } // команда
+        public static string[] command { get; set; } // команда
 
         static void Main(string[] args)
         {
@@ -28,6 +27,10 @@ namespace Unknown_World_of_Magic_server
 
                 Console.WriteLine("Сервер запущен. Ожидание команд...");
 
+                // заполняем словарь
+                Dictionary dictionary = new Dictionary();
+                dictionary.FillingDictionary();
+
                 while (true)
                 {
                     Socket handler = listenSocket.Accept();
@@ -45,14 +48,19 @@ namespace Unknown_World_of_Magic_server
                     while (handler.Available > 0);
 
                     Console.WriteLine(DateTime.Now.ToShortTimeString() + ": " + builder.ToString());
+                 
+                    command = builder.ToString().Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
+                    string clientCommand = command[0];
 
-                    // выполнение полученной команды
+                    // выполнение команды
                     Client client = new Client();
-                    command = builder.ToString();
-                    client.ExecutingCommand();
+                    client.ExecuteCommand();
+
+                    // генерируем ответ 
+                    string message;
+                    message = Dictionary.dictionary[clientCommand];
 
                     // отправляем ответ
-                    string message = response;
                     data = Encoding.Unicode.GetBytes(message);
                     handler.Send(data);
 
@@ -64,101 +72,74 @@ namespace Unknown_World_of_Magic_server
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
+            }            
         }
 
         // выполнение команды
-        public void ExecutingCommand()
+        public void ExecuteCommand()
         {
             #region классы
-
-            Location location = new Location(); // локация
-            Characteristics characteristics = new Characteristics(); // характеристики
-            IGetAttributes warrior = new Warrior(); // воин
-            IGetAttributes assassin = new Assassin(); // ассасин
-            IGetAttributes wizard = new Wizard(); // маг
-            IGetAttributes bandit = new Bandit(); // разбойник
-            IGetAttributes leshii = new Leshii(); // леший
-            Player player = new Player(); // игрок
-            Enemy enemy = new Enemy(); // враг
+            
+            Location location = new Location();
+            Characteristics characteristics = new Characteristics();
+            Player player = new Player();
+            Enemy enemy = new Enemy();
+            Dictionary dictionary = new Dictionary();
 
             #endregion
 
             #region разработчик
 
-            Developer developer = new Developer( 
-                new CommandSetInitialLocation(location),
-                new CommandSetNextLocation(location),
-                new CommandSetPreviousLocation(location),
-                new CommandIncreaseStrength(characteristics),
-                new CommandIncreaseAgility(characteristics),
-                new CommandIncreaseIntelligence(characteristics),
-                new CommandGetWarriorAttributes(warrior),
-                new CommandGetAssassinAttributes(assassin),
-                new CommandGetWizardAttributes(wizard),
-                new CommandGetBanditAttributes(bandit),
-                new CommandGetLeshiiAttributes(leshii),
-                new CommandSetPlayerName(),
-                new CommandPlayerAttack(player),
-                new CommandRestoringHealthPoints(player),
-                new CommandRestoringActionPoints(player),
-                new CommandIncreaseExperiencePoints(player),
-                new CommandResetExperiencePoints(player),
-                new CommandIncreaseLevel(player),
-                new CommandIncreaseGold(player),
-                new CommandEnemyAttack(enemy)
+            Developer developer = new Developer
+                (new CommandSetInitialLocation(location, dictionary),
+                new CommandSetNextLocation(location, dictionary),
+                new CommandSetPreviousLocation(location, dictionary),
+                new CommandIncreaseStrength(characteristics, dictionary),
+                new CommandIncreaseAgility(characteristics, dictionary),
+                new CommandIncreaseIntelligence(characteristics, dictionary),
+                new CommandGetWarriorAttributes(dictionary),
+                new CommandGetAssassinAttributes(dictionary),
+                new CommandGetWizardAttributes(dictionary),
+                new CommandGetBanditAttributes(dictionary),
+                new CommandGetLeshiiAttributes(dictionary),
+                new CommandSetPlayerName(player, dictionary),
+                new CommandPlayerAttack(player, dictionary),
+                new CommandRestoringHealthPoints(player, dictionary),
+                new CommandRestoringActionPoints(player, dictionary),
+                new CommandIncreaseExperiencePoints(player, dictionary),
+                new CommandResetExperiencePoints(player, dictionary),
+                new CommandIncreaseLevel(player, dictionary),
+                new CommandIncreaseGold(player, dictionary),
+                new CommandEnemyAttack(enemy, dictionary)
                 );
 
             #endregion
 
             #region выполнение команд
 
-            #region локации
-
-            developer.ExecutingSetInitialLocation();
-            developer.ExecutingSetNextLocation();
-            developer.ExecutingSetPreviousLocation();
-
-            #endregion
-
-            #region характеристик
-
-            developer.ExecutingIncreaseStrength();
-            developer.ExecutingIncreaseAgility();
-            developer.ExecutingIncreaseIntelligence();
-
-            #endregion
-
-            #region получения атрибутов персонажа
-
-            developer.ExecutingGetWarriorAttributes();
-            developer.ExecutingGetAssassinAttributes();
-            developer.ExecutingGetWizardAttributes();
-            developer.ExecutingGetBanditAttributes();
-            developer.ExecutingGetLeshiiAttributes();
-
-            #endregion
-
-            #region игрока
-
-            developer.ExecutingSetPlayerName();
-            developer.ExecutingPlayerAttack();
-            developer.ExecutingRestoringHealthPoints();
-            developer.ExecutingRestoringActionPoints();
-            developer.ExecutingIncreaseExperiencePoints();
-            developer.ExecutingResetExperiencePoints();
-            developer.ExecutingIncreaseLevel();
-            developer.ExecutingIncreaseGold();
-
-            #endregion
-
-            #region врага
-
-            developer.ExecutingEnemyAttack();
-
-            #endregion
+            developer.ExecuteSetInitialLocation();
+            developer.ExecuteSetNextLocation();
+            developer.ExecuteSetPreviousLocation();
+            developer.ExecuteIncreaseStrength();
+            developer.ExecuteIncreaseAgility();
+            developer.ExecuteIncreaseIntelligence();
+            developer.ExecuteGetWarriorAttributes();
+            developer.ExecuteGetAssassinAttributes();
+            developer.ExecuteGetWizardAttributes();
+            developer.ExecuteGetBanditAttributes();
+            developer.ExecuteGetLeshiiAttributes();
+            developer.ExecuteSetPlayerName();
+            developer.ExecutePlayerAttack();
+            developer.ExecuteRestoringHealthPoints();
+            developer.ExecuteRestoringActionPoints();
+            developer.ExecuteIncreaseExperiencePoints();
+            developer.ExecuteResetExperiencePoints();
+            developer.ExecuteIncreaseLevel();
+            developer.ExecuteIncreaseGold();
+            developer.ExecuteEnemyAttack();
 
             #endregion
         }
     }
+
 }

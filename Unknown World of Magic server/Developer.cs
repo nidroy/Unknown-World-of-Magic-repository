@@ -8,34 +8,17 @@ namespace Unknown_World_of_Magic_server
     {
         #region команды
 
-        #region локации
-
         ICommand setInitialLocation;
         ICommand setNextLocation;
         ICommand setPreviousLocation;
-
-        #endregion
-
-        #region характеристик
-
         ICommand increaseStrength;
         ICommand increaseAgility;
         ICommand increaseIntelligence;
-
-        #endregion
-
-        #region получения атрибутов персонажа
-
         ICommand getWarriorAttributes;
         ICommand getAssassinAttributes;
         ICommand getWizardAttributes;
         ICommand getBanditAttributes;
         ICommand getLeshiiAttributes;
-
-        #endregion
-
-        #region игрока
-
         ICommand setPlayerName;
         ICommand playerAttack;
         ICommand restoringHealthPoints;
@@ -44,41 +27,33 @@ namespace Unknown_World_of_Magic_server
         ICommand resetExperiencePoints;
         ICommand increaseLevel;
         ICommand increaseGold;
-
-        #endregion
-
-        #region врага
-
         ICommand enemyAttack;
-
-        #endregion
 
         #endregion
 
         #region конструктор
 
-        public Developer(
-            ICommand setInitialLocation,
-            ICommand setNextLocation,
-            ICommand setPreviousLocation,
-            ICommand increaseStrength,
-            ICommand increaseAgility,
-            ICommand increaseIntelligence,
-            ICommand getWarriorAttributes,
-            ICommand getAssassinAttributes,
-            ICommand getWizardAttributes,
-            ICommand getBanditAttributes,
-            ICommand getLeshiiAttributes,
-            ICommand setPlayerName,
-            ICommand playerAttack,
-            ICommand restoringHealthPoints,
-            ICommand restoringActionPoints,
-            ICommand increaseExperiencePoints,
-            ICommand resetExperiencePoints,
-            ICommand increaseLevel,
-            ICommand increaseGold,
-            ICommand enemyAttack
-            )
+        public Developer
+            (ICommand setInitialLocation, 
+            ICommand setNextLocation, 
+            ICommand setPreviousLocation, 
+            ICommand increaseStrength, 
+            ICommand increaseAgility, 
+            ICommand increaseIntelligence, 
+            ICommand getWarriorAttributes, 
+            ICommand getAssassinAttributes, 
+            ICommand getWizardAttributes, 
+            ICommand getBanditAttributes, 
+            ICommand getLeshiiAttributes, 
+            ICommand setPlayerName, 
+            ICommand playerAttack, 
+            ICommand restoringHealthPoints, 
+            ICommand restoringActionPoints, 
+            ICommand increaseExperiencePoints, 
+            ICommand resetExperiencePoints, 
+            ICommand increaseLevel, 
+            ICommand increaseGold, 
+            ICommand enemyAttack)
         {
             this.setInitialLocation = setInitialLocation;
             this.setNextLocation = setNextLocation;
@@ -106,145 +81,86 @@ namespace Unknown_World_of_Magic_server
 
         #region выполнение команд
 
-        #region локации
-
-        // выполнение команды SetInitialLocation
-        public void ExecutingSetInitialLocation()
+        public void ExecuteSetInitialLocation()
         {
-            setInitialLocation.Executing();
+            setInitialLocation.Execute();
         }
-
-        // выполнение команды SetNextLocation
-        public void ExecutingSetNextLocation()
+        public void ExecuteSetNextLocation()
         {
-            setNextLocation.Executing();
+            setNextLocation.Execute();
         }
-
-        // выполнение команды SetPreviousLocation
-        public void ExecutingSetPreviousLocation()
+        public void ExecuteSetPreviousLocation()
         {
-            setPreviousLocation.Executing();
+            setPreviousLocation.Execute();
         }
-
-        #endregion
-
-        #region характеристик
-
-        // выполнение команды IncreaseStrength
-        public void ExecutingIncreaseStrength()
+        public void ExecuteIncreaseStrength()
         {
-            increaseStrength.Executing();
+            increaseStrength.Execute();
         }
-
-        // выполнение команды IncreaseAgility
-        public void ExecutingIncreaseAgility()
+        public void ExecuteIncreaseAgility()
         {
-            increaseAgility.Executing();
+            increaseAgility.Execute();
         }
-
-        // выполнение команды IncreaseIntelligence
-        public void ExecutingIncreaseIntelligence()
+        public void ExecuteIncreaseIntelligence()
         {
-            increaseIntelligence.Executing();
+            increaseIntelligence.Execute();
         }
-
-        #endregion
-
-        #region получения атрибутов персонажа
-
-        // выполнение команды GetWarriorAttributes
-        public void ExecutingGetWarriorAttributes()
+        public void ExecuteGetWarriorAttributes()
         {
-            getWarriorAttributes.Executing();
+            getWarriorAttributes.Execute();
         }
-
-        // выполнение команды GetAssassinAttributes
-        public void ExecutingGetAssassinAttributes()
+        public void ExecuteGetAssassinAttributes()
         {
-            getAssassinAttributes.Executing();
+            getAssassinAttributes.Execute();
         }
-
-        // выполнение команды GetWizardAttributes
-        public void ExecutingGetWizardAttributes()
+        public void ExecuteGetWizardAttributes()
         {
-            getWizardAttributes.Executing();
+            getWizardAttributes.Execute();
         }
-
-        // выполнение команды GetBanditAttributes
-        public void ExecutingGetBanditAttributes()
+        public void ExecuteGetBanditAttributes()
         {
-            getBanditAttributes.Executing();
+            getBanditAttributes.Execute();
         }
-
-        // выполнение команды GetLeshiiAttributes
-        public void ExecutingGetLeshiiAttributes()
+        public void ExecuteGetLeshiiAttributes()
         {
-            getLeshiiAttributes.Executing();
+            getLeshiiAttributes.Execute();
         }
-
-        #endregion
-
-        #region игрока
-
-        // выполнение команды SetPlayerName
-        public void ExecutingSetPlayerName()
+        public void ExecuteSetPlayerName()
         {
-            setPlayerName.Executing();
+            setPlayerName.Execute();
         }
-
-        // выполнение команды PlayerAttack
-        public void ExecutingPlayerAttack()
+        public void ExecutePlayerAttack()
         {
-            playerAttack.Executing();
+            playerAttack.Execute();
         }
-
-        // выполнение команды RestoringHealthPoints
-        public void ExecutingRestoringHealthPoints()
+        public void ExecuteRestoringHealthPoints()
         {
-            restoringHealthPoints.Executing();
+            restoringHealthPoints.Execute();
         }
-
-        // выполнение команды RestoringActionPoints
-        public void ExecutingRestoringActionPoints()
+        public void ExecuteRestoringActionPoints()
         {
-            restoringActionPoints.Executing();
+            restoringActionPoints.Execute();
         }
-
-        // выполнение команды IncreaseExperiencePoints
-        public void ExecutingIncreaseExperiencePoints()
+        public void ExecuteIncreaseExperiencePoints()
         {
-            increaseExperiencePoints.Executing();
+            increaseExperiencePoints.Execute();
         }
-
-        // выполнение команды ResetExperiencePoints
-        public void ExecutingResetExperiencePoints()
+        public void ExecuteResetExperiencePoints()
         {
-            resetExperiencePoints.Executing();
+            resetExperiencePoints.Execute();
         }
-
-        // выполнение команды IncreaseLevel
-        public void ExecutingIncreaseLevel()
+        public void ExecuteIncreaseLevel()
         {
-            increaseLevel.Executing();
+            increaseLevel.Execute();
         }
-
-        // выполнение команды IncreaseGold
-        public void ExecutingIncreaseGold()
+        public void ExecuteIncreaseGold()
         {
-            increaseGold.Executing();
+            increaseGold.Execute();
         }
-
-        #endregion
-
-        #region врага
-
-        // выполнение команды EnemyAttack
-        public void ExecutingEnemyAttack()
+        public void ExecuteEnemyAttack()
         {
-            enemyAttack.Executing();
+            enemyAttack.Execute();
         }
-
-        #endregion
 
         #endregion
     }

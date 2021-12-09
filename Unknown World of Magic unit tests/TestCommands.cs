@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 
 namespace Unknown_World_of_Magic_server
 {
@@ -8,26 +9,12 @@ namespace Unknown_World_of_Magic_server
         [Test]
         public void TestSetLocation()
         {
-            Client client = new Client();
+            Dictionary dictionary = new Dictionary();
+            dictionary.FillingDictionary();
 
-            Client.command = "SetInitialLocation";
-            client.ExecutingCommand();
-
-            Assert.AreEqual(Location.locationName, "Glade");
-            Assert.AreEqual(Enemy.enemyClass, "Bandit");
-        }
-
-        [Test]
-        public void TestSetCharacteristics()
-        {
-            Client client = new Client();
-
-            Client.command = "IncreaseStrength";
-            Player.playerSkillPoints = 2;
-            client.ExecutingCommand();
-
-            Assert.AreEqual(Characteristics.strength, 1);
-            Assert.AreEqual(Player.playerSkillPoints, 1);
+            Assert.AreEqual(dictionary.dictionary["GetBanditAttributes"], "Bandit_50_1");
+            dictionary.OverwritingDictionary("GetBanditAttributes");
+            Assert.AreEqual(Enemy.enemyHealthPoints, 50);
         }
     }
 }

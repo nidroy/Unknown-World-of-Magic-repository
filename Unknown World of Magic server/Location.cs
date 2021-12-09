@@ -11,27 +11,39 @@ namespace Unknown_World_of_Magic_server
         public static string locationDescription { get; set; } // описание локации
 
         // установить следующую локацию
-        public void SetNextLocation()
-        { 
-            locationNumber++;
-            ChooseLocation();
-            GetEnemyAttributes();
+        public string SetNextLocation()
+        {
+            if (Client.command[0] == "SetNextLocation")
+            {
+                locationNumber++;
+                ChooseLocation();
+                GetEnemyAttributes();
+            }
+            return locationName + "_" + locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
         }
 
         // установить предыдущую локацию
-        public void SetPreviousLocation()
+        public string SetPreviousLocation()
         {
-            locationNumber--;
-            ChooseLocation();
-            GetEnemyAttributes();
+            if (Client.command[0] == "SetPreviousLocation")
+            {
+                locationNumber--;
+                ChooseLocation();
+                GetEnemyAttributes();
+            }
+            return locationName + "_" + locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
         }
 
         // установить начальную локацию
-        public void SetInitialLocation()
+        public string SetInitialLocation()
         {
-            locationNumber = 0;
-            ChooseLocation();
-            GetEnemyAttributes();
+            if (Client.command[0] == "SetInitialLocation")
+            {
+                locationNumber = 0;
+                ChooseLocation();
+                GetEnemyAttributes();
+            }
+            return locationName + "_" + locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
         }
 
         // выбрать локацию
@@ -47,11 +59,8 @@ namespace Unknown_World_of_Magic_server
         // получить атрибуты врага
         private void GetEnemyAttributes()
         {
-            IGetAttributes Bandit = new Bandit();
-            IGetAttributes Leshii = new Leshii();
-
-            Bandit.GetCharacterAttributes();
-            Leshii.GetCharacterAttributes();
+            Bandit.GetBanditAttributes();
+            Leshii.GetLeshiiAttributes();
         }
     }
 }

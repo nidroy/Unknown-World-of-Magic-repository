@@ -4,529 +4,353 @@ using System.Text;
 
 namespace Unknown_World_of_Magic_server
 {
-    #region команды локации
-
     // команда SetInitialLocation
     public class CommandSetInitialLocation : ICommand
     {
-        Location location; // локация
+        Location location;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandSetInitialLocation(Location location)
+        public CommandSetInitialLocation(Location location, Dictionary dictionary)
         {
             this.location = location;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "SetInitialLocation")
-            {
-                location.SetInitialLocation();
-                Client.response = Location.locationName + "_" + Location.locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("SetInitialLocation", location.SetInitialLocation());
         }
     }
 
     // команда SetNextLocation
     public class CommandSetNextLocation : ICommand
     {
-        Location location; // локация
+        Location location;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandSetNextLocation(Location location)
+        public CommandSetNextLocation(Location location, Dictionary dictionary)
         {
             this.location = location;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "SetNextLocation")
-            {
-                location.SetNextLocation();
-                Client.response = Location.locationName + "_" + Location.locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("SetNextLocation", location.SetNextLocation());
         }
     }
 
     // команда SetPreviousLocation
     public class CommandSetPreviousLocation : ICommand
     {
-        Location location; // локация
+        Location location;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandSetPreviousLocation(Location location)
+        public CommandSetPreviousLocation(Location location, Dictionary dictionary)
         {
             this.location = location;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "SetPreviousLocation")
-            {
-                location.SetPreviousLocation();
-                Client.response = Location.locationName + "_" + Location.locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("SetPreviousLocation", location.SetPreviousLocation());
         }
     }
-
-    #endregion
-
-    #region команды характеристик
 
     // команда IncreaseStrength
     public class CommandIncreaseStrength : ICommand
     {
-        Characteristics characteristics; // характеристики
+        Characteristics characteristics;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandIncreaseStrength(Characteristics characteristics)
+        public CommandIncreaseStrength(Characteristics characteristics, Dictionary dictionary)
         {
             this.characteristics = characteristics;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "IncreaseStrength")
-            {
-                characteristics.IncreaseStrength();
-                Client.response = Characteristics.strength.ToString() + "_" + Player.playerHealthPoints.ToString() + "_" + Player.playerSkillPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("IncreaseStrength", characteristics.IncreaseStrength());
         }
     }
 
     // команда IncreaseAgility
     public class CommandIncreaseAgility : ICommand
     {
-        Characteristics characteristics; // характеристики
+        Characteristics characteristics;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandIncreaseAgility(Characteristics characteristics)
+        public CommandIncreaseAgility(Characteristics characteristics, Dictionary dictionary)
         {
             this.characteristics = characteristics;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "IncreaseAgility")
-            {
-                characteristics.IncreaseAgility();
-                Client.response = Characteristics.agility.ToString() + "_" + Player.playerSkillPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("IncreaseAgility", characteristics.IncreaseAgility());
         }
     }
 
     // команда IncreaseIntelligence
     public class CommandIncreaseIntelligence : ICommand
     {
-        Characteristics characteristics; // характеристики
+        Characteristics characteristics;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandIncreaseIntelligence(Characteristics characteristics)
+        public CommandIncreaseIntelligence(Characteristics characteristics, Dictionary dictionary)
         {
             this.characteristics = characteristics;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "IncreaseIntelligence")
-            {
-                characteristics.IncreaseIntelligence();
-                Client.response = Characteristics.intelligence.ToString() + "_" + Player.playerActionPoints.ToString() + "_" + Player.playerSkillPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("IncreaseIntelligence", characteristics.IncreaseIntelligence());
         }
     }
-
-    #endregion
-
-    #region команды получения атрибутов персонажа
 
     // команда GetWarriorAttributes
     public class CommandGetWarriorAttributes : ICommand
     {
-        IGetAttributes warrior = new Warrior(); // воин
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandGetWarriorAttributes(IGetAttributes warrior)
+        public CommandGetWarriorAttributes(Dictionary dictionary)
         {
-            this.warrior = warrior;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "GetWarriorAttributes")
-            {
-                warrior.GetCharacterAttributes();
-                Client.response = Player.playerClass + "_" + Player.playerHealthPoints.ToString() + "_" + Player.playerActionPoints.ToString() + "_" + Player.playerExperiencePoints.ToString() + "_" + Player.playerSkillPoints.ToString() + "_" + Player.playerLevel.ToString() + "_" + Player.playerGold.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("GetWarriorAttributes", Warrior.GetWarriorAttributes());
         }
     }
 
     // команда GetAssassinAttributes
     public class CommandGetAssassinAttributes : ICommand
     {
-        IGetAttributes assassin = new Assassin(); // ассасин
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandGetAssassinAttributes(IGetAttributes assassin)
+        public CommandGetAssassinAttributes(Dictionary dictionary)
         {
-            this.assassin = assassin;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "GetAssassinAttributes")
-            {
-                assassin.GetCharacterAttributes();
-                Client.response = Player.playerClass + "_" + Player.playerHealthPoints.ToString() + "_" + Player.playerActionPoints.ToString() + "_" + Player.playerExperiencePoints.ToString() + "_" + Player.playerSkillPoints.ToString() + "_" + Player.playerLevel.ToString() + "_" + Player.playerGold.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("GetAssassinAttributes", Assassin.GetAssassinAttributes());
         }
     }
 
     // команда GetWizardAttributes
     public class CommandGetWizardAttributes : ICommand
     {
-        IGetAttributes wizard = new Wizard(); // маг
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandGetWizardAttributes(IGetAttributes wizard)
+        public CommandGetWizardAttributes(Dictionary dictionary)
         {
-            this.wizard = wizard;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "GetWizardAttributes")
-            {
-                wizard.GetCharacterAttributes();
-                Client.response = Player.playerClass + "_" + Player.playerHealthPoints.ToString() + "_" + Player.playerActionPoints.ToString() + "_" + Player.playerExperiencePoints.ToString() + "_" + Player.playerSkillPoints.ToString() + "_" + Player.playerLevel.ToString() + "_" + Player.playerGold.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("GetWizardAttributes", Wizard.GetWizardAttributes());
         }
     }
 
     // команда GetBanditAttributes
     public class CommandGetBanditAttributes : ICommand
     {
-        IGetAttributes bandit = new Bandit(); // разбойник
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandGetBanditAttributes(IGetAttributes bandit)
+        public CommandGetBanditAttributes(Dictionary dictionary)
         {
-            this.bandit = bandit;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "GetBanditAttributes")
-            {
-                bandit.GetCharacterAttributes();
-                Client.response = Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("GetBanditAttributes", Bandit.GetBanditAttributes());
         }
     }
 
     // команда GetLeshiiAttributes
     public class CommandGetLeshiiAttributes : ICommand
     {
-        IGetAttributes leshii = new Leshii(); // леший
+        Dictionary dictionary;
 
-        public CommandGetLeshiiAttributes(IGetAttributes leshii)
+        public CommandGetLeshiiAttributes(Dictionary dictionary)
         {
-            this.leshii = leshii;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "GetLeshiiAttributes")
-            {
-                leshii.GetCharacterAttributes();
-                Client.response = Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("GetLeshiiAttributes", Leshii.GetLeshiiAttributes());
         }
     }
-
-    #endregion
-
-    #region команды игрока
 
     // команда SetPlayerName
     public class CommandSetPlayerName : ICommand
     {
-        // конструктор
-        public CommandSetPlayerName()
-        {
+        Player player;
+        Dictionary dictionary;
 
+        public CommandSetPlayerName(Player player, Dictionary dictionary)
+        {
+            this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
-        { 
-            string[] command = Client.command.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (command[0] == "SetPlayerName")
-            {
-                Player.playerName += command[1];
-                Client.response = Player.playerName;
-            }
+        public void Execute()
+        {
+            dictionary.OverwritingDictionaryElement("SetPlayerName", player.SetPlayerName());
         }
     }
 
     // команда PlayerAttack
     public class CommandPlayerAttack : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandPlayerAttack(Player player)
+        public CommandPlayerAttack(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "PlayerAttack")
-            {
-                player.Attack();
-                Client.response = Enemy.enemyHealthPoints.ToString() + "_" + Player.playerActionPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("PlayerAttack", player.Attack());
         }
     }
 
     // команда RestoringHealthPoints
     public class CommandRestoringHealthPoints : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandRestoringHealthPoints(Player player)
+        public CommandRestoringHealthPoints(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "RestoringHealthPoints")
-            {
-                player.RestoringHealthPoints();
-                Client.response = Player.playerHealthPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("RestoringHealthPoints", player.RestoringHealthPoints());
         }
     }
 
     // команда RestoringActionPoints
     public class CommandRestoringActionPoints : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandRestoringActionPoints(Player player)
+        public CommandRestoringActionPoints(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if(Client.command == "RestoringActionPoints")
-            {
-                player.RestoringActionPoints();
-                Client.response = Player.playerActionPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("RestoringActionPoints", player.RestoringActionPoints());
         }
     }
 
     // команда IncreaseExperiencePoints
     public class CommandIncreaseExperiencePoints : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandIncreaseExperiencePoints(Player player)
+        public CommandIncreaseExperiencePoints(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "IncreaseExperiencePoints")
-            {
-                player.IncreaseExperiencePoints();
-                Client.response = Player.playerExperiencePoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("IncreaseExperiencePoints", player.IncreaseExperiencePoints());
         }
     }
 
     // команда ResetExperiencePoints
     public class CommandResetExperiencePoints : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandResetExperiencePoints(Player player)
+        public CommandResetExperiencePoints(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "ResetExperiencePoints")
-            {
-                player.ResetExperiencePoints();
-                Client.response = Player.playerExperiencePoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("ResetExperiencePoints", player.ResetExperiencePoints());
         }
     }
 
     // команда IncreaseLevel
     public class CommandIncreaseLevel : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandIncreaseLevel(Player player)
+        public CommandIncreaseLevel(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "IncreaseLevel")
-            {
-                player.IncreaseLevel();
-                Client.response = Player.playerLevel.ToString() + "_" + Player.playerSkillPoints.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("IncreaseLevel", player.IncreaseLevel());
         }
     }
 
     // команда IncreaseGold
     public class CommandIncreaseGold : ICommand
     {
-        Player player; // игрок
+        Player player;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandIncreaseGold(Player player)
+        public CommandIncreaseGold(Player player, Dictionary dictionary)
         {
             this.player = player;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "IncreaseGold")
-            {
-                player.IncreaseGold();
-                Client.response = Player.playerGold.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("IncreaseGold", player.IncreaseGold());
         }
     }
-
-    #endregion
-
-    #region команды врага
 
     // команда EnemyAttack
     public class CommandEnemyAttack : ICommand
     {
-        Enemy enemy; // враг
+        Enemy enemy;
+        Dictionary dictionary;
 
-        // конструктор
-        public CommandEnemyAttack(Enemy enemy)
+        public CommandEnemyAttack(Enemy enemy, Dictionary dictionary)
         {
             this.enemy = enemy;
+            this.dictionary = dictionary;
         }
 
-        // выполнение команды
-        public void Executing()
+        public void Execute()
         {
-            if (Client.command == "EnemyAttack")
-            {
-                enemy.Attack();
-                Client.response = Player.playerHealthPoints.ToString();
-            }
+            dictionary.OverwritingDictionaryElement("EnemyAttack", enemy.Attack());
         }
     }
-
-    #endregion
-
-    #region команды увеличения основной характеристики
-
-    // команда IncreaseStrengthWarrior
-    public class CommandIncreaseStrengthWarrior: IIncreaseMainCharacteristic
-    {
-        Characteristics characteristics; // характеристики
-
-        // конструктор
-        public CommandIncreaseStrengthWarrior(Characteristics characteristics)
-        {
-            this.characteristics = characteristics;
-        }
-
-        // выполнение увеличения основной характеристики
-        public void IncreaseMainCharacteristic()
-        {
-            if(Player.playerClass == "Warrior")
-            {
-                characteristics.IncreaseStrength();
-            }
-        }
-    }
-
-    // команда IncreaseAgilityAssassin
-    public class CommandIncreaseAgilityAssassin : IIncreaseMainCharacteristic
-    {
-        Characteristics characteristics; // характеристики
-
-        // конструктор
-        public CommandIncreaseAgilityAssassin(Characteristics characteristics)
-        {
-            this.characteristics = characteristics;
-        }
-
-        // выполнение увеличения основной характеристики
-        public void IncreaseMainCharacteristic()
-        {
-            if (Player.playerClass == "Assassin")
-            {
-                characteristics.IncreaseAgility();
-            }
-        }
-    }
-
-    // команда IncreaseIntelligenceWizard
-    public class CommandIncreaseIntelligenceWizard : IIncreaseMainCharacteristic
-    {
-        Characteristics characteristics; // характеристики
-
-        // конструктор
-        public CommandIncreaseIntelligenceWizard(Characteristics characteristics)
-        {
-            this.characteristics = characteristics;
-        }
-
-        // выполнение увеличения основной характеристики
-        public void IncreaseMainCharacteristic()
-        {
-            if (Player.playerClass == "Wizard")
-            {
-                characteristics.IncreaseIntelligence();
-            }
-        }
-    }
-
-    #endregion
 }

@@ -139,18 +139,21 @@ public class Player : Character
     // восстановление очков действия игрока
     public void RestoringActionPoints()
     {
-        if (playerActionPoints.fillAmount == 1.5)
+        if (playerActionPoints.fillAmount < 1)
         {
-            secondsRestoringActionPoints = 0;
-        }
-        else
-        {
-            secondsRestoringActionPoints += Time.deltaTime;
-            if (secondsRestoringActionPoints >= 1)
+            if (playerActionPoints.fillAmount == 1.5)
             {
-                Server server = new Server(); // сервер
-                SetPlayerActionPoints(int.Parse(server.SendingMessage("RestoringActionPoints")));
                 secondsRestoringActionPoints = 0;
+            }
+            else
+            {
+                secondsRestoringActionPoints += Time.deltaTime;
+                if (secondsRestoringActionPoints >= 1)
+                {
+                    Server server = new Server(); // сервер
+                    SetPlayerActionPoints(int.Parse(server.SendingMessage("RestoringActionPoints")));
+                    secondsRestoringActionPoints = 0;
+                }
             }
         }
     }

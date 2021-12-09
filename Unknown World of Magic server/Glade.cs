@@ -13,6 +13,7 @@ namespace Unknown_World_of_Magic_server
             {
                 locationName = "Glade";
                 locationDescription = "Зелёная поляна расположена недалеко от ворот в город. На поляне расположилась банда разбойников, обкрадывающая торговцев, которые идут в город.";
+                Client.command[0] = "GetBanditAttributes";
             }
         }
     }

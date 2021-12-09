@@ -4,21 +4,22 @@ using System.Text;
 
 namespace Unknown_World_of_Magic_server
 {
-    public class Bandit : IGetAttributes
+    public class Bandit : Enemy
     {
         // получить атрибуты разбойника
-        public void GetCharacterAttributes()
+        public static string GetBanditAttributes()
         {
-            if (Location.locationNumber == 0)
+            if (Location.locationNumber == 0 && Client.command[0] == "GetBanditAttributes")
             {
-                Enemy.enemyClass = "Bandit";
-                Enemy.enemyHealthPoints = 50;
-                Enemy.enemyExperiencePoints = 20;
-                Enemy.enemyLevel = 1;
-                Enemy.enemyGold = 20;
-                Enemy.enemyDamage = 8;
-                Enemy.enemyMiss = 20;
+                enemyClass = "Bandit";
+                enemyHealthPoints = 50;
+                enemyExperiencePoints = 20;
+                enemyLevel = 1;
+                enemyGold = 20;
+                enemyDamage = 8;
+                enemyMiss = 20;
             }
+            return enemyClass + "_" + enemyHealthPoints.ToString() + "_" + enemyLevel.ToString();
         }
     }
 }
