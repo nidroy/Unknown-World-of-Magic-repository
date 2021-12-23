@@ -11,6 +11,7 @@ public class Characteristics : MonoBehaviour
     public Text intelligence; // интеллект
     public Animator characteristicsAnim; // анимации характеристик
     public Player player; // игрок
+    public GameObject timer; // таймер
 
     #region SetCharacteristics
 
@@ -37,7 +38,10 @@ public class Characteristics : MonoBehaviour
     // показать, скрыть характеристики
     public void ShowHideCharacteristics()
     {
-        characteristicsAnim.SetBool("isShow", !characteristicsAnim.GetBool("isShow"));  
+        if (!timer.activeSelf)
+        {
+            characteristicsAnim.SetBool("isShow", !characteristicsAnim.GetBool("isShow"));
+        }
     }
 
     // увеличить силу
@@ -49,6 +53,7 @@ public class Characteristics : MonoBehaviour
 
         SetStrength(int.Parse(attribute[0]));
         player.SetMaximumCharacterHealthPoints(int.Parse(attribute[1]));
+        player.SetCharacterHealthPoints(int.Parse(attribute[1]));
         player.SetPlayerSkillPoints(int.Parse(attribute[2]));
     }
 
@@ -72,6 +77,7 @@ public class Characteristics : MonoBehaviour
 
         SetIntelligence(int.Parse(attribute[0]));
         player.SetMaximumPlayerActionPoints(int.Parse(attribute[1]));
+        player.SetPlayerActionPoints(int.Parse(attribute[1]));
         player.SetPlayerSkillPoints(int.Parse(attribute[2]));
     }
 }

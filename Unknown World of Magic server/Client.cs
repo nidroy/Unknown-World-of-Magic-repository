@@ -28,8 +28,8 @@ namespace Unknown_World_of_Magic_server
                 Console.WriteLine("Сервер запущен. Ожидание команд...");
 
                 // заполняем словарь
-                Dictionary dictionary = new Dictionary();
-                dictionary.FillingDictionary();
+                Client client = new Client();
+                client.FillingDictionary();
 
                 while (true)
                 {
@@ -50,15 +50,10 @@ namespace Unknown_World_of_Magic_server
                     Console.WriteLine(DateTime.Now.ToShortTimeString() + ": " + builder.ToString());
                  
                     command = builder.ToString().Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries);
-                    string clientCommand = command[0];
-
-                    // выполнение команды
-                    Client client = new Client();
-                    client.ExecuteCommand();
 
                     // генерируем ответ 
                     string message;
-                    message = Dictionary.dictionary[clientCommand];
+                    message = Dictionary.dictionary[command[0]].Execute();
 
                     // отправляем ответ
                     data = Encoding.Unicode.GetBytes(message);
@@ -75,8 +70,8 @@ namespace Unknown_World_of_Magic_server
             }            
         }
 
-        // выполнение команды
-        public void ExecuteCommand()
+        // заполнение словаря
+        public void FillingDictionary()
         {
             #region классы
             
@@ -84,59 +79,44 @@ namespace Unknown_World_of_Magic_server
             Characteristics characteristics = new Characteristics();
             Player player = new Player();
             Enemy enemy = new Enemy();
-            Dictionary dictionary = new Dictionary();
+            Database database = new Database();
 
             #endregion
 
             #region разработчик
 
-            Developer developer = new Developer
-                (new CommandSetInitialLocation(location, dictionary),
-                new CommandSetNextLocation(location, dictionary),
-                new CommandSetPreviousLocation(location, dictionary),
-                new CommandIncreaseStrength(characteristics, dictionary),
-                new CommandIncreaseAgility(characteristics, dictionary),
-                new CommandIncreaseIntelligence(characteristics, dictionary),
-                new CommandGetWarriorAttributes(dictionary),
-                new CommandGetAssassinAttributes(dictionary),
-                new CommandGetWizardAttributes(dictionary),
-                new CommandGetBanditAttributes(dictionary),
-                new CommandGetLeshiiAttributes(dictionary),
-                new CommandSetPlayerName(player, dictionary),
-                new CommandPlayerAttack(player, dictionary),
-                new CommandRestoringHealthPoints(player, dictionary),
-                new CommandRestoringActionPoints(player, dictionary),
-                new CommandIncreaseExperiencePoints(player, dictionary),
-                new CommandResetExperiencePoints(player, dictionary),
-                new CommandIncreaseLevel(player, dictionary),
-                new CommandIncreaseGold(player, dictionary),
-                new CommandEnemyAttack(enemy, dictionary)
+            Dictionary dictionary = new Dictionary
+                (new CommandSetInitialLocation(location),
+                new CommandSetNextLocation(location),
+                new CommandSetPreviousLocation(location),
+                new CommandIncreaseStrength(characteristics),
+                new CommandIncreaseAgility(characteristics),
+                new CommandIncreaseIntelligence(characteristics),
+                new CommandGetWarriorAttributes(),
+                new CommandGetAssassinAttributes(),
+                new CommandGetWizardAttributes(),
+                new CommandGetBanditAttributes(),
+                new CommandGetLeshiiAttributes(),
+                new CommandSetPlayerName(player),
+                new CommandPlayerAttack(player),
+                new CommandRestoringHealthPoints(player),
+                new CommandRestoringActionPoints(player),
+                new CommandIncreaseExperiencePoints(player),
+                new CommandResetExperiencePoints(player),
+                new CommandIncreaseLevel(player),
+                new CommandIncreaseGold(player),
+                new CommandEnemyAttack(enemy),
+                new CommandGetPlayers(database),
+                new CommandGetAttributes(database),
+                new CommandSaveGame(database),
+                new CommandCreatePlayer(database)
                 );
 
             #endregion
 
-            #region выполнение команд
+            #region заполнение словаря
 
-            developer.ExecuteSetInitialLocation();
-            developer.ExecuteSetNextLocation();
-            developer.ExecuteSetPreviousLocation();
-            developer.ExecuteIncreaseStrength();
-            developer.ExecuteIncreaseAgility();
-            developer.ExecuteIncreaseIntelligence();
-            developer.ExecuteGetWarriorAttributes();
-            developer.ExecuteGetAssassinAttributes();
-            developer.ExecuteGetWizardAttributes();
-            developer.ExecuteGetBanditAttributes();
-            developer.ExecuteGetLeshiiAttributes();
-            developer.ExecuteSetPlayerName();
-            developer.ExecutePlayerAttack();
-            developer.ExecuteRestoringHealthPoints();
-            developer.ExecuteRestoringActionPoints();
-            developer.ExecuteIncreaseExperiencePoints();
-            developer.ExecuteResetExperiencePoints();
-            developer.ExecuteIncreaseLevel();
-            developer.ExecuteIncreaseGold();
-            developer.ExecuteEnemyAttack();
+            dictionary.FillingDictionary();
 
             #endregion
         }

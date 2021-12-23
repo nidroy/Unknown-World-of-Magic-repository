@@ -14,13 +14,23 @@ public class RegistrationMenu : MonoBehaviour
     public Characteristics characteristics; // характеристики
     public Location location; // локация
     public Enemy enemy; // враг
+    public GameObject MessageBox;
 
     // начать игру
     public void StartGame()
     {
         if (player.playerClass != "")
         {
-            gameAnim.SetBool("isShowCreatingPlayer", false);
+            Server server = new Server();
+            string response = server.SendingMessage("CreatePlayer");
+            if (response == "PlayerExists")
+            {
+                MessageBox.SetActive(true);
+            }
+            else
+            {
+                gameAnim.SetBool("isShowCreatingPlayer", false);
+            }
         }
     }
 
@@ -85,5 +95,11 @@ public class RegistrationMenu : MonoBehaviour
     public void SetPlayerIcon(Image classIcon)
     {
         player.SetCharacterIcon(classIcon.sprite);
+    }
+
+    // закрыть MessageBox
+    public void CloseMessageBox()
+    {
+        MessageBox.SetActive(false);
     }
 }

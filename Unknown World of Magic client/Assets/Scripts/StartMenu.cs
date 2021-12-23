@@ -5,6 +5,7 @@ using UnityEngine;
 public class StartMenu : MonoBehaviour
 {
     public Animator gameAnim; // анимации игры
+    public ScrollViewAdapter adapter; // адаптер бд
 
     // начать новую игру
     public void StartNewGame()
@@ -15,6 +16,7 @@ public class StartMenu : MonoBehaviour
     // продолжить игру
     public void ContinueGame()
     {
-
+        gameAnim.SetBool("isShowContinue", true);
+        adapter.UpdateItems();
     }
 }

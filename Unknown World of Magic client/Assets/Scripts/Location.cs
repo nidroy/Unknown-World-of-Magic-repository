@@ -48,7 +48,7 @@ public class Location : MonoBehaviour
     }
 
     // установить границу локации
-    private void SetLocationBoundaries(string leftBorder, string rightBorder)
+    public void SetLocationBoundaries(string leftBorder, string rightBorder)
     {
         buttonNextLocation.SetActive(true);
         buttonPreviousLocation.SetActive(true);

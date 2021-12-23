@@ -20,17 +20,14 @@ namespace Unknown_World_of_Magic_server
         // установить имя игрока
         public string SetPlayerName()
         {
-            if (Client.command[0] == "SetPlayerName")
-            {
-                playerName = Client.command[1];
-            }
+            playerName = Client.command[1];
             return playerName;
         }
 
         // атака
         public string Attack()
         {
-            if (playerActionPoints >= playerDamage && Client.command[0] == "PlayerAttack")
+            if (playerActionPoints >= playerDamage)
             {
                 Random random = new Random();
                 if (random.Next(0, 100) < 100 - playerMiss)
@@ -39,13 +36,13 @@ namespace Unknown_World_of_Magic_server
                 }
                 playerActionPoints -= playerDamage;
             }
-            return Enemy.enemyHealthPoints.ToString() + "_" + playerActionPoints.ToString();
+            return String.Format("{0}_{1}", Enemy.enemyHealthPoints, playerActionPoints);
         }
 
         // восстановление очков здоровья
         public string RestoringHealthPoints()
         {
-            if (playerHealthPoints < Characteristics.strength * 10 && Client.command[0] == "RestoringHealthPoints")
+            if (playerHealthPoints < Characteristics.strength * 10)
             {
                 playerHealthPoints++;
             }
@@ -55,7 +52,7 @@ namespace Unknown_World_of_Magic_server
         // восстановление очков действий
         public string RestoringActionPoints()
         {
-            if (playerActionPoints < Characteristics.intelligence * 10 && Client.command[0] == "RestoringActionPoints")
+            if (playerActionPoints < Characteristics.intelligence * 10)
             {
                 playerActionPoints++;
             }
@@ -65,54 +62,39 @@ namespace Unknown_World_of_Magic_server
         // увеличить очки опыта
         public string IncreaseExperiencePoints()
         {
-            if (Client.command[0] == "IncreaseExperiencePoints")
-            {
-                playerExperiencePoints += Enemy.enemyExperiencePoints;
-            }
+            playerExperiencePoints += Enemy.enemyExperiencePoints;
             return playerExperiencePoints.ToString();
         }
 
         // обнулить очки опыта
         public string ResetExperiencePoints()
         {
-            if (Client.command[0] == "ResetExperiencePoints")
-            {
-                playerExperiencePoints = 0;
-            }
+            playerExperiencePoints = 0;
             return playerExperiencePoints.ToString();
         }
 
         // увеличить уровень
         public string IncreaseLevel()
         {
-            if (Client.command[0] == "IncreaseLevel")
+            playerLevel++;
+            for (int i = 0; i < 3; i++)
+                IncreaseSkillPoints();
+            if (playerClass == "Warrior")
             {
-                playerLevel++;
-                for (int i = 0; i < 3; i++)
-                    IncreaseSkillPoints();
-                if (playerClass == "Warrior")
-                {
-                    Characteristics characteristics = new Characteristics();
-
-                    Client.command[0] = "IncreaseStrength";
-                    characteristics.IncreaseStrength();
-                }
-                else if(playerClass == "Assassin")
-                {
-                    Characteristics characteristics = new Characteristics();
-
-                    Client.command[0] = "IncreaseAgility";
-                    characteristics.IncreaseAgility();
-                }
-                else if(playerClass == "Wizard")
-                {
-                    Characteristics characteristics = new Characteristics();
-
-                    Client.command[0] = "IncreaseIntelligence";
-                    characteristics.IncreaseIntelligence();
-                }
+                Characteristics characteristics = new Characteristics();
+                characteristics.IncreaseStrength();
             }
-            return playerLevel.ToString() + "_" + playerSkillPoints.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
+            else if (playerClass == "Assassin")
+            {
+                Characteristics characteristics = new Characteristics();
+                characteristics.IncreaseAgility();
+            }
+            else if (playerClass == "Wizard")
+            {
+                Characteristics characteristics = new Characteristics();
+                characteristics.IncreaseIntelligence();
+            }
+            return String.Format("{0}_{1}_{2}_{3}_{4}", playerLevel, playerSkillPoints, Characteristics.strength, Characteristics.agility, Characteristics.intelligence);
         }
 
         // увеличить очки навыков
@@ -124,10 +106,7 @@ namespace Unknown_World_of_Magic_server
         // увеличить золото
         public string IncreaseGold()
         {
-            if (Client.command[0] == "IncreaseGold")
-            {
-                playerGold += Enemy.enemyGold;
-            }
+            playerGold += Enemy.enemyGold;
             return playerGold.ToString();
         }
     }

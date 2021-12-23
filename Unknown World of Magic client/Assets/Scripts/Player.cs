@@ -108,7 +108,7 @@ public class Player : Character
             characteristics.SetStrength(int.Parse(attribute[2]));
             characteristics.SetAgility(int.Parse(attribute[3]));
             characteristics.SetIntelligence(int.Parse(attribute[4]));
-            SetMaximumPlayerExperiencePoints(maximumPlayerExperiencePoints * 2);
+            SetMaximumPlayerExperiencePoints(100 + 100 * int.Parse(characterLevel.text));
             SetPlayerExperiencePoints(int.Parse(server.SendingMessage("ResetExperiencePoints")));
         }
     }

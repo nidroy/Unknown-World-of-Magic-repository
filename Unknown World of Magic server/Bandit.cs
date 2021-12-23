@@ -9,9 +9,9 @@ namespace Unknown_World_of_Magic_server
         // получить атрибуты разбойника
         public static string GetBanditAttributes()
         {
-            if (Location.locationNumber == 0 && Client.command[0] == "GetBanditAttributes")
+            if (Location.locationNumber == 0)
             {
-                enemyClass = "Bandit";
+                enemyName = "Bandit";
                 enemyHealthPoints = 50;
                 enemyExperiencePoints = 20;
                 enemyLevel = 1;
@@ -19,7 +19,7 @@ namespace Unknown_World_of_Magic_server
                 enemyDamage = 8;
                 enemyMiss = 20;
             }
-            return enemyClass + "_" + enemyHealthPoints.ToString() + "_" + enemyLevel.ToString();
+            return String.Format("{0}_{1}_{2}", enemyName, enemyHealthPoints, enemyLevel);
         }
     }
 }

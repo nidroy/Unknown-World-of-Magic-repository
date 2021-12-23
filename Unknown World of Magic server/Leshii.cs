@@ -9,9 +9,9 @@ namespace Unknown_World_of_Magic_server
         // получить атрибуты лешего
         public static string GetLeshiiAttributes()
         {
-            if (Location.locationNumber == 1 && Client.command[0] == "GetLeshiiAttributes")
+            if (Location.locationNumber == 1)
             {
-                enemyClass = "Leshii";
+                enemyName = "Leshii";
                 enemyHealthPoints = 200;
                 enemyExperiencePoints = 50;
                 enemyLevel = 10;
@@ -19,7 +19,7 @@ namespace Unknown_World_of_Magic_server
                 enemyDamage = 12;
                 enemyMiss = 10;
             }
-            return enemyClass + "_" + enemyHealthPoints.ToString() + "_" + enemyLevel.ToString();
+            return String.Format("{0}_{1}_{2}", enemyName, enemyHealthPoints, enemyLevel);
         }
     }
 }

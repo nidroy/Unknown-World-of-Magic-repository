@@ -13,37 +13,28 @@ namespace Unknown_World_of_Magic_server
         // установить следующую локацию
         public string SetNextLocation()
         {
-            if (Client.command[0] == "SetNextLocation")
-            {
-                locationNumber++;
-                ChooseLocation();
-                GetEnemyAttributes();
-            }
-            return locationName + "_" + locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
+            locationNumber++;
+            ChooseLocation();
+            GetEnemyAttributes();
+            return String.Format("{0}_{1}_{2}_{3}_{4}", locationName, locationDescription, Enemy.enemyName, Enemy.enemyHealthPoints, Enemy.enemyLevel);
         }
 
         // установить предыдущую локацию
         public string SetPreviousLocation()
         {
-            if (Client.command[0] == "SetPreviousLocation")
-            {
-                locationNumber--;
-                ChooseLocation();
-                GetEnemyAttributes();
-            }
-            return locationName + "_" + locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
+            locationNumber--;
+            ChooseLocation();
+            GetEnemyAttributes();
+            return String.Format("{0}_{1}_{2}_{3}_{4}", locationName, locationDescription, Enemy.enemyName, Enemy.enemyHealthPoints, Enemy.enemyLevel);
         }
 
         // установить начальную локацию
         public string SetInitialLocation()
         {
-            if (Client.command[0] == "SetInitialLocation")
-            {
-                locationNumber = 0;
-                ChooseLocation();
-                GetEnemyAttributes();
-            }
-            return locationName + "_" + locationDescription + "_" + Enemy.enemyClass + "_" + Enemy.enemyHealthPoints.ToString() + "_" + Enemy.enemyLevel.ToString();
+            locationNumber = 0;
+            ChooseLocation();
+            GetEnemyAttributes();
+            return String.Format("{0}_{1}_{2}_{3}_{4}", locationName, locationDescription, Enemy.enemyName, Enemy.enemyHealthPoints, Enemy.enemyLevel);
         }
 
         // выбрать локацию

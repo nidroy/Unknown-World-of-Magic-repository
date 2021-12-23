@@ -9,23 +9,20 @@ namespace Unknown_World_of_Magic_server
         // получить атрибуты мага
         public static string GetWizardAttributes()
         {
-            if (Client.command[0] == "GetWizardAttributes")
-            {
-                playerClass = "Wizard";
-                playerHealthPoints = 80;
-                playerActionPoints = 120;
-                playerExperiencePoints = 0;
-                playerSkillPoints = 0;
-                playerLevel = 0;
-                playerGold = 0;
-                playerDamage = 15;
-                playerMiss = 5;
+            playerClass = "Wizard";
+            playerHealthPoints = 80;
+            playerActionPoints = 120;
+            playerExperiencePoints = 0;
+            playerSkillPoints = 0;
+            playerLevel = 0;
+            playerGold = 0;
+            playerDamage = 15;
+            playerMiss = 5;
 
-                Characteristics.strength = 8;
-                Characteristics.agility = 15;
-                Characteristics.intelligence = 12;
-            }
-            return playerClass + "_" + playerHealthPoints.ToString() + "_" + playerActionPoints.ToString() + "_" + playerExperiencePoints.ToString() + "_" + playerSkillPoints.ToString() + "_" + playerLevel.ToString() + "_" + playerGold.ToString() + "_" + Characteristics.strength.ToString() + "_" + Characteristics.agility.ToString() + "_" + Characteristics.intelligence.ToString();
+            Characteristics.strength = 8;
+            Characteristics.agility = 15;
+            Characteristics.intelligence = 12;
+            return String.Format("{0}_{1}_{2}_{3}_{4}_{5}_{6}_{7}_{8}_{9}", playerClass, playerHealthPoints, playerActionPoints, playerExperiencePoints, playerSkillPoints, playerLevel, playerGold, Characteristics.strength, Characteristics.agility, Characteristics.intelligence);
         }
     }
 }

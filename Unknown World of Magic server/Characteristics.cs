@@ -13,37 +13,37 @@ namespace Unknown_World_of_Magic_server
         // увеличить силу
         public string IncreaseStrength()
         {
-            if (Player.playerSkillPoints > 0 && Client.command[0] == "IncreaseStrength")
+            if (Player.playerSkillPoints > 0)
             {
                 strength++;
                 Player.playerHealthPoints = strength * 10;
                 Player.playerSkillPoints--;
             }
-            return strength.ToString() + "_" + Player.playerHealthPoints.ToString() + "_" + Player.playerSkillPoints.ToString();
+            return String.Format("{0}_{1}_{2}", strength, Player.playerHealthPoints, Player.playerSkillPoints);
         }
 
         // увеличить ловкость
         public string IncreaseAgility()
         {
-            if (Player.playerSkillPoints > 0 && Client.command[0] == "IncreaseAgility")
+            if (Player.playerSkillPoints > 0)
             {
                 agility++;
                 Player.playerDamage = agility;
                 Player.playerSkillPoints--;
             }
-            return agility.ToString() + "_" + Player.playerSkillPoints.ToString();
+            return String.Format("{0}_{1}", agility, Player.playerSkillPoints);
         }
 
         // увеличить интеллект
         public string IncreaseIntelligence()
         {
-            if (Player.playerSkillPoints > 0 && Client.command[0] == "IncreaseIntelligence")
+            if (Player.playerSkillPoints > 0)
             {
                 intelligence++;
                 Player.playerActionPoints = intelligence * 10;
                 Player.playerSkillPoints--;
             }
-            return intelligence.ToString() + "_" + Player.playerActionPoints.ToString() + "_" + Player.playerSkillPoints.ToString();
+            return String.Format("{0}_{1}_{2}", intelligence, Player.playerActionPoints, Player.playerSkillPoints);
         }
     }
 }

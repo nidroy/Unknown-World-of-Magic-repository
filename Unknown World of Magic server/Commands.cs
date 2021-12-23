@@ -8,17 +8,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandSetInitialLocation : ICommand
     {
         Location location;
-        Dictionary dictionary;
 
-        public CommandSetInitialLocation(Location location, Dictionary dictionary)
+        public CommandSetInitialLocation(Location location)
         {
             this.location = location;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("SetInitialLocation", location.SetInitialLocation());
+            return location.SetInitialLocation();
         }
     }
 
@@ -26,17 +24,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandSetNextLocation : ICommand
     {
         Location location;
-        Dictionary dictionary;
 
-        public CommandSetNextLocation(Location location, Dictionary dictionary)
+        public CommandSetNextLocation(Location location)
         {
             this.location = location;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("SetNextLocation", location.SetNextLocation());
+            return location.SetNextLocation();
         }
     }
 
@@ -44,17 +40,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandSetPreviousLocation : ICommand
     {
         Location location;
-        Dictionary dictionary;
 
-        public CommandSetPreviousLocation(Location location, Dictionary dictionary)
+        public CommandSetPreviousLocation(Location location)
         {
             this.location = location;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("SetPreviousLocation", location.SetPreviousLocation());
+            return location.SetPreviousLocation();
         }
     }
 
@@ -62,17 +56,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandIncreaseStrength : ICommand
     {
         Characteristics characteristics;
-        Dictionary dictionary;
 
-        public CommandIncreaseStrength(Characteristics characteristics, Dictionary dictionary)
+        public CommandIncreaseStrength(Characteristics characteristics)
         {
             this.characteristics = characteristics;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("IncreaseStrength", characteristics.IncreaseStrength());
+            return characteristics.IncreaseStrength();
         }
     }
 
@@ -80,17 +72,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandIncreaseAgility : ICommand
     {
         Characteristics characteristics;
-        Dictionary dictionary;
 
-        public CommandIncreaseAgility(Characteristics characteristics, Dictionary dictionary)
+        public CommandIncreaseAgility(Characteristics characteristics)
         {
             this.characteristics = characteristics;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("IncreaseAgility", characteristics.IncreaseAgility());
+            return characteristics.IncreaseAgility();
         }
     }
 
@@ -98,97 +88,60 @@ namespace Unknown_World_of_Magic_server
     public class CommandIncreaseIntelligence : ICommand
     {
         Characteristics characteristics;
-        Dictionary dictionary;
 
-        public CommandIncreaseIntelligence(Characteristics characteristics, Dictionary dictionary)
+        public CommandIncreaseIntelligence(Characteristics characteristics)
         {
             this.characteristics = characteristics;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("IncreaseIntelligence", characteristics.IncreaseIntelligence());
+            return characteristics.IncreaseIntelligence();
         }
     }
 
     // команда GetWarriorAttributes
     public class CommandGetWarriorAttributes : ICommand
     {
-        Dictionary dictionary;
-
-        public CommandGetWarriorAttributes(Dictionary dictionary)
+        public string Execute()
         {
-            this.dictionary = dictionary;
-        }
-
-        public void Execute()
-        {
-            dictionary.OverwritingDictionaryElement("GetWarriorAttributes", Warrior.GetWarriorAttributes());
+            return Warrior.GetWarriorAttributes();
         }
     }
 
     // команда GetAssassinAttributes
     public class CommandGetAssassinAttributes : ICommand
     {
-        Dictionary dictionary;
-
-        public CommandGetAssassinAttributes(Dictionary dictionary)
+        public string Execute()
         {
-            this.dictionary = dictionary;
-        }
-
-        public void Execute()
-        {
-            dictionary.OverwritingDictionaryElement("GetAssassinAttributes", Assassin.GetAssassinAttributes());
+            return Assassin.GetAssassinAttributes();
         }
     }
 
     // команда GetWizardAttributes
     public class CommandGetWizardAttributes : ICommand
     {
-        Dictionary dictionary;
-
-        public CommandGetWizardAttributes(Dictionary dictionary)
+        public string Execute()
         {
-            this.dictionary = dictionary;
-        }
-
-        public void Execute()
-        {
-            dictionary.OverwritingDictionaryElement("GetWizardAttributes", Wizard.GetWizardAttributes());
+            return Wizard.GetWizardAttributes();
         }
     }
 
     // команда GetBanditAttributes
     public class CommandGetBanditAttributes : ICommand
     {
-        Dictionary dictionary;
-
-        public CommandGetBanditAttributes(Dictionary dictionary)
+        public string Execute()
         {
-            this.dictionary = dictionary;
-        }
-
-        public void Execute()
-        {
-            dictionary.OverwritingDictionaryElement("GetBanditAttributes", Bandit.GetBanditAttributes());
+            return Bandit.GetBanditAttributes();
         }
     }
 
     // команда GetLeshiiAttributes
     public class CommandGetLeshiiAttributes : ICommand
     {
-        Dictionary dictionary;
-
-        public CommandGetLeshiiAttributes(Dictionary dictionary)
+        public string Execute()
         {
-            this.dictionary = dictionary;
-        }
-
-        public void Execute()
-        {
-            dictionary.OverwritingDictionaryElement("GetLeshiiAttributes", Leshii.GetLeshiiAttributes());
+            return Leshii.GetLeshiiAttributes();
         }
     }
 
@@ -196,17 +149,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandSetPlayerName : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandSetPlayerName(Player player, Dictionary dictionary)
+        public CommandSetPlayerName(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("SetPlayerName", player.SetPlayerName());
+            return player.SetPlayerName();
         }
     }
 
@@ -214,17 +165,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandPlayerAttack : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandPlayerAttack(Player player, Dictionary dictionary)
+        public CommandPlayerAttack(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("PlayerAttack", player.Attack());
+            return player.Attack();
         }
     }
 
@@ -232,17 +181,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandRestoringHealthPoints : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandRestoringHealthPoints(Player player, Dictionary dictionary)
+        public CommandRestoringHealthPoints(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("RestoringHealthPoints", player.RestoringHealthPoints());
+            return player.RestoringHealthPoints();
         }
     }
 
@@ -250,17 +197,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandRestoringActionPoints : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandRestoringActionPoints(Player player, Dictionary dictionary)
+        public CommandRestoringActionPoints(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("RestoringActionPoints", player.RestoringActionPoints());
+            return player.RestoringActionPoints();
         }
     }
 
@@ -268,17 +213,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandIncreaseExperiencePoints : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandIncreaseExperiencePoints(Player player, Dictionary dictionary)
+        public CommandIncreaseExperiencePoints(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("IncreaseExperiencePoints", player.IncreaseExperiencePoints());
+            return player.IncreaseExperiencePoints();
         }
     }
 
@@ -286,17 +229,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandResetExperiencePoints : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandResetExperiencePoints(Player player, Dictionary dictionary)
+        public CommandResetExperiencePoints(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("ResetExperiencePoints", player.ResetExperiencePoints());
+            return player.ResetExperiencePoints();
         }
     }
 
@@ -304,17 +245,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandIncreaseLevel : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandIncreaseLevel(Player player, Dictionary dictionary)
+        public CommandIncreaseLevel(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("IncreaseLevel", player.IncreaseLevel());
+            return player.IncreaseLevel();
         }
     }
 
@@ -322,17 +261,15 @@ namespace Unknown_World_of_Magic_server
     public class CommandIncreaseGold : ICommand
     {
         Player player;
-        Dictionary dictionary;
 
-        public CommandIncreaseGold(Player player, Dictionary dictionary)
+        public CommandIncreaseGold(Player player)
         {
             this.player = player;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("IncreaseGold", player.IncreaseGold());
+            return player.IncreaseGold();
         }
     }
 
@@ -340,17 +277,92 @@ namespace Unknown_World_of_Magic_server
     public class CommandEnemyAttack : ICommand
     {
         Enemy enemy;
-        Dictionary dictionary;
 
-        public CommandEnemyAttack(Enemy enemy, Dictionary dictionary)
+        public CommandEnemyAttack(Enemy enemy)
         {
             this.enemy = enemy;
-            this.dictionary = dictionary;
         }
 
-        public void Execute()
+        public string Execute()
         {
-            dictionary.OverwritingDictionaryElement("EnemyAttack", enemy.Attack());
+            return enemy.Attack();
+        }
+    }
+
+    // команда GetPlayers
+    public class CommandGetPlayers : ICommand
+    {
+        Database database;
+
+        public CommandGetPlayers(Database database)
+        {
+            this.database = database;
+        }
+
+        public string Execute()
+        {
+            string result = "";
+            if (database.GetPlayers().Count == 0)
+            {
+                result = "NULL+";
+            }
+            else
+            {
+                for (int i = 0; i < database.GetPlayers().Count; i++)
+                {
+                    result += database.GetPlayers()[i] + "+";
+                }
+            }
+            return result.Remove(result.Length - 1);
+        }
+    }
+
+    // команда GetAttributes
+    public class CommandGetAttributes : ICommand
+    {
+        Database database;
+
+        public CommandGetAttributes(Database database)
+        {
+            this.database = database;
+        }
+
+        public string Execute()
+        {
+            return database.GetAttributes(Client.command[1]);
+        }
+    }
+
+    // команда SaveGame
+    public class CommandSaveGame : ICommand
+    {
+        Database database;
+
+        public CommandSaveGame(Database database)
+        {
+            this.database = database;
+        }
+
+        public string Execute()
+        {
+            database.SaveGame(Player.playerName);
+            return "THE GAME IS SAVED";
+        }
+    }
+
+    // команда CreatePlayer
+    public class CommandCreatePlayer : ICommand
+    {
+        Database database;
+
+        public CommandCreatePlayer(Database database)
+        {
+            this.database = database;
+        }
+
+        public string Execute()
+        {
+            return database.CreatePlayer();
         }
     }
 }
