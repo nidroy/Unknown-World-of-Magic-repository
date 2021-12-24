@@ -9,7 +9,10 @@ namespace Unknown_World_of_Magic_server
 {
     public class Database
     {
-        public static string connectionString = "Data Source=MYLAPTOP;Initial Catalog=Unknown World of Magic database;Integrated Security=True";
+        // БД SQL Server
+        //public static string connectionString = "Data Source=MYLAPTOP;Initial Catalog=Unknown World of Magic database;Integrated Security=True";
+        // Локальная БД 
+        public static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Unknown World of Magic database;Integrated Security=True";
         SqlConnection connection = new SqlConnection(connectionString);
 
         public List<string> GetPlayers()
@@ -19,7 +22,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT Name, Class, Level, Gold FROM Character JOIN Player ON Character.ID = Player.ID";
+                command.CommandText = "SELECT Name, ClassName, Level, Gold FROM Character JOIN Player ON Character.ID = Player.CharacterID JOIN Class ON Player.ClassID = Class.ID;";
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -39,7 +42,6 @@ namespace Unknown_World_of_Magic_server
         {
             UpdateCharacter(playerName);
             UpdatePlayer(playerName);
-            UpdateCharacteristics(playerName);
             UpdateEnemy(playerName);
         }
 
@@ -49,7 +51,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("UPDATE Character SET HealthPoints = '{0}', ExperiencePoints = '{1}', Level = '{2}', Gold = '{3}', Damage = '{4}', Miss = '{5}', LocationID = '{6}' WHERE Name = '{7}'", Player.playerHealthPoints, Player.playerExperiencePoints, Player.playerLevel, Player.playerGold, Player.playerDamage, Player.playerMiss, Location.locationNumber, playerName);
+                command.CommandText = String.Format("UPDATE Character SET HealthPoints = '{0}', ExperiencePoints = '{1}', Level = '{2}', Gold = '{3}', Damage = '{4}', Miss = '{5}', LocationID = '{6}' WHERE Name = '{7}';", Player.playerHealthPoints, Player.playerExperiencePoints, Player.playerLevel, Player.playerGold, Player.playerDamage, Player.playerMiss, Location.locationNumber, playerName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -63,21 +65,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("UPDATE Player SET ActionPoints = '{0}', SkillPoints = '{1}' WHERE Player.ID = (SELECT Character.ID FROM Character WHERE Name = '{2}')", Player.playerActionPoints, Player.playerSkillPoints, playerName);
-
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                connection.Close();
-            }
-        }
-
-        private void UpdateCharacteristics(string playerName)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = String.Format("UPDATE Characteristics SET Strength = '{0}', Agility = '{1}', Intelligence = '{2}' WHERE Characteristics.PlayerID = (SELECT Player.ID FROM Player JOIN Character ON Player.ID = Character.ID WHERE Name = '{3}')", Characteristics.strength, Characteristics.agility, Characteristics.intelligence, playerName);
+                command.CommandText = String.Format("UPDATE Player SET ActionPoints = '{0}', SkillPoints = '{1}', Strength = {2}, Agility = '{3}', Intelligence = '{4}' WHERE Player.CharacterID = (SELECT Character.ID FROM Character WHERE Name = '{5}');", Player.playerActionPoints, Player.playerSkillPoints, Characteristics.strength, Characteristics.agility, Characteristics.intelligence, playerName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -91,7 +79,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("UPDATE Character SET HealthPoints = '{0}', ExperiencePoints = '{1}', Level = '{2}', Gold = '{3}', Damage = '{4}', Miss = '{5}', LocationID = '{6}' WHERE Character.ID = (SELECT Enemy.ID FROM Enemy JOIN Player ON Enemy.PlayerID = Player.ID WHERE Player.ID = (SELECT Character.ID FROM Character WHERE Name = '{7}'))", Enemy.enemyHealthPoints, Enemy.enemyExperiencePoints, Enemy.enemyLevel, Enemy.enemyGold, Enemy.enemyDamage, Enemy.enemyMiss, Location.locationNumber, playerName);
+                command.CommandText = String.Format("UPDATE EnemyForPlayer SET EnemyID = (SELECT Enemy.ID FROM Enemy JOIN Character ON Enemy.CharacterID = Character.ID WHERE Name = '{0}') WHERE PlayerID = (SELECT Player.ID FROM Player JOIN Character ON Player.CharacterID = Character.ID WHERE Name = '{1}');", Enemy.enemyName, playerName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -115,7 +103,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("SELECT Name, Class, HealthPoints, ActionPoints, ExperiencePoints, SkillPoints, Level, Gold, Damage, Miss, Strength, Agility, Intelligence FROM Character JOIN Player ON Character.ID = Player.ID JOIN Characteristics ON Player.ID = Characteristics.PlayerID WHERE Name = '{0}'", playerName);
+                command.CommandText = String.Format("SELECT Name, ClassName, HealthPoints, ActionPoints, ExperiencePoints, SkillPoints, Level, Gold, Damage, Miss, Strength, Agility, Intelligence FROM Character JOIN Player ON Character.ID = Player.CharacterID JOIN Class ON Player.ClassID = Class.ID WHERE Character.Name = '{0}';", playerName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -140,7 +128,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("SELECT Name, HealthPoints, ExperiencePoints, Level, Gold, Damage, Miss FROM Character JOIN Enemy ON Character.ID = Enemy.ID WHERE Enemy.PlayerID = (SELECT Player.ID FROM Player JOIN Character ON Player.ID = Character.ID WHERE Name = '{0}');", playerName);
+                command.CommandText = String.Format("SELECT Name, HealthPoints, ExperiencePoints, Level, Gold, Damage, Miss FROM Character JOIN Enemy ON Character.ID = Enemy.CharacterID WHERE Enemy.ID = (SELECT EnemyID FROM EnemyForPlayer JOIN Player ON EnemyForPlayer.PlayerID = Player.ID JOIN Character ON Player.CharacterID = Character.ID WHERE Name = '{0}');", playerName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -165,7 +153,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("SELECT ID, Name, Description FROM Location WHERE Location.ID = (SELECT LocationID FROM Character JOIN Player ON Character.ID = Player.ID WHERE Character.Name = '{0}');", playerName);
+                command.CommandText = String.Format("SELECT Location.ID, Location.Name, Location.Description FROM Location JOIN Character ON Location.ID = Character.LocationID WHERE Character.Name = '{0}';", playerName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -247,7 +235,6 @@ namespace Unknown_World_of_Magic_server
             {
                 InsertCharacter();
                 InsertPlayer();
-                InsertCharacteristics();
                 InsertEnemy();
             }
             return "THE PLAYER IS CREATED";
@@ -260,7 +247,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = "SELECT Name FROM Character JOIN Player ON Character.ID = Player.ID";
+                command.CommandText = "SELECT Name FROM Character JOIN Player ON Character.ID = Player.CharacterID";
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -280,7 +267,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("INSERT INTO Character VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}'), ('{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}')", Player.playerName, Player.playerHealthPoints, Player.playerExperiencePoints, Player.playerLevel, Player.playerGold, Player.playerDamage, Player.playerMiss, Location.locationNumber, Enemy.enemyName, Enemy.enemyHealthPoints, Enemy.enemyExperiencePoints, Enemy.enemyLevel, Enemy.enemyGold, Enemy.enemyDamage, Enemy.enemyMiss, Location.locationNumber);
+                command.CommandText = String.Format("INSERT INTO Character VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}');", Player.playerName, Player.playerHealthPoints, Player.playerExperiencePoints, Player.playerLevel, Player.playerGold, Player.playerDamage, Player.playerMiss, Location.locationNumber);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -294,21 +281,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("INSERT INTO Player VALUES ((SELECT ID FROM Character WHERE Name = '{0}'),'{1}','{2}','{3}')", Player.playerName, Player.playerClass, Player.playerActionPoints, Player.playerSkillPoints);
-
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-                connection.Close();
-            }
-        }
-
-        private void InsertCharacteristics()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand();
-                command.Connection = connection;
-                command.CommandText = String.Format("INSERT INTO Characteristics VALUES ('{0}', '{1}', '{2}', (SELECT ID FROM Character WHERE Name = '{3}'))", Characteristics.strength, Characteristics.agility, Characteristics.intelligence, Player.playerName);
+                command.CommandText = String.Format("INSERT INTO Player VALUES ((SELECT ID FROM Character WHERE Name = '{0}'), (SELECT ID FROM Class WHERE ClassName = '{1}'), '{2}', '{3}', '{4}', '{5}', '{6}');", Player.playerName, Player.playerClass, Player.playerActionPoints, Player.playerSkillPoints, Characteristics.strength, Characteristics.agility, Characteristics.intelligence);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
@@ -322,7 +295,7 @@ namespace Unknown_World_of_Magic_server
             {
                 SqlCommand command = new SqlCommand();
                 command.Connection = connection;
-                command.CommandText = String.Format("INSERT INTO Enemy VALUES ((SELECT ID FROM Character WHERE Name = '{0}') + 1, (SELECT ID FROM Character WHERE Name = '{0}'))", Player.playerName);
+                command.CommandText = String.Format("INSERT INTO EnemyForPlayer VALUES ((SELECT Player.ID FROM Player JOIN Character ON Player.CharacterID = Character.ID WHERE Name = '{0}'), (SELECT Enemy.ID FROM Enemy JOIN Character ON Enemy.CharacterID = Character.ID WHERE Name = '{1}'));", Player.playerName, Enemy.enemyName);
 
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();

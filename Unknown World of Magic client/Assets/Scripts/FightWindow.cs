@@ -8,7 +8,7 @@ public class FightWindow : MonoBehaviour
     public GameObject buttonAttack; // кнопка атаки
     public GameObject buttonFight; // кнопка сражения
     public GameObject clock; // часы
-    public Image timeLine; // линия время
+    public Image timeLine; // линия времени
     public Text time; // время
     public Player player; // игрок
     public Enemy enemy; // враг
