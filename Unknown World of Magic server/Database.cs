@@ -10,9 +10,9 @@ namespace Unknown_World_of_Magic_server
     public class Database
     {
         // БД SQL Server
-        //public static string connectionString = "Data Source=MYLAPTOP;Initial Catalog=Unknown World of Magic database;Integrated Security=True";
-        // Локальная БД 
-        public static string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Unknown World of Magic database;Integrated Security=True";
+        public static string connectionString = "Data Source=MYLAPTOP;Initial Catalog=Unknown World of Magic database;Integrated Security=True";
+        // Локальная БД
+        //public static string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Unknown World of Magic\\Database\\Unknown World of Magic database.mdf;Integrated Security=True;Connect Timeout=30";
         SqlConnection connection = new SqlConnection(connectionString);
 
         public List<string> GetPlayers()

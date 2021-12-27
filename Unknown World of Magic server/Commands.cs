@@ -157,7 +157,7 @@ namespace Unknown_World_of_Magic_server
 
         public string Execute()
         {
-            return player.SetPlayerName();
+            return player.SetPlayerName(Client.command[1]);
         }
     }
 

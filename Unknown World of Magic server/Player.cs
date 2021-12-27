@@ -18,12 +18,12 @@ namespace Unknown_World_of_Magic_server
         public static int playerMiss { get; set; } // промах игрока
 
         // установить имя игрока
-        public string SetPlayerName()
+        public string SetPlayerName(string name)
         {
-            playerName = Client.command[1];
+            playerName = name;
             return playerName;
         }
-
+      
         // атака
         public string Attack()
         {
